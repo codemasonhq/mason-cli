@@ -1,4 +1,4 @@
-FROM codemasonhq/php
+FROM {{ image }}
 
 MAINTAINER Your Name <email@example.com>
 
