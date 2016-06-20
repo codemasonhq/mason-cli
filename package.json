@@ -1,0 +1,25 @@
+{
+  "name": "mason",
+  "description": "Codemason CLI - craft and manage Docker apps with ease.",
+  "version": "0.0.1",
+  "author": "Ben M",
+  "license": "MIT",
+  "main": "./lib/mason.js",
+  "bin": "./lib/cli.js",
+  "dependencies": {
+    "colors": "1.1.2",
+    "minimist": "1.2.0"
+  },
+  "devDependencies": {
+    "mocha": "*",
+    "nixt": "0.5.0",
+    "should": "7.1.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/codemasonhq/mason-cli.git"
+  }
+}

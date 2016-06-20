@@ -1,0 +1,22 @@
+###########################################################################
+# Docker Compose File
+###########################################################################
+#
+# Your Docker Compose file spins up your application's environment.
+# It defines all of the services, network links and volumes to
+# be used by your application. Modify this file as required.
+#
+php:
+  build: . 
+  volumes:
+    - ./:/app
+      
+nginx:
+  image: codemasonhq/nginx
+  volumes:
+    - ./logs/nginx/:/var/log/nginx
+  ports:
+    - "80:80"
+    - "443:443"
+  links:
+    - php

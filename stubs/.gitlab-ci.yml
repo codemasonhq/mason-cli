@@ -1,0 +1,13 @@
+stages: 
+  - build
+
+before_script:
+  - docker info
+  - docker version
+  - docker login -u=gitlab-ci-token -e=$CI_BUILD_EMAIL -p $CI_BUILD_TOKEN registry.mason.ci
+
+build: 
+  stage: build
+  script: 
+    - docker build -t registry.mason.ci/foo/bar:latest .
+    - docker push registry.mason.ci/foo/bar:latest
