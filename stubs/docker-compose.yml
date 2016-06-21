@@ -6,17 +6,37 @@
 # It defines all of the services, network links and volumes to
 # be used by your application. Modify this file as required.
 #
-php:
-  build: . 
-  volumes:
-    - ./:/app
-      
-nginx:
-  image: codemasonhq/nginx
-  volumes:
-    - ./logs/nginx/:/var/log/nginx
-  ports:
-    - "80:80"
-    - "443:443"
-  links:
-    - php
+version: '2'
+services:
+  {{#instances}}
+  {{name}}:
+    build: . 
+    {{#volumes}} 
+    volumes:
+      {{#each this}}
+      - {{@key}}:{{this}}
+      {{/each}}
+    {{/volumes}}
+  {{/instances}}
+
+  {{#services}}
+  {{name}}:
+    image: {{image}}
+    {{#volumes}} 
+    volumes:
+      {{#each this}}
+      - {{@key}}:{{this}}
+      {{/each}}
+    {{/volumes}}
+    ports:
+      {{#ports}}
+      - "{{this}}"
+      {{/ports}}
+    {{#environment}}
+    environment: 
+      {{#each this}}
+        {{@key}}: {{this}}
+      {{/each}}
+    {{/environment}}
+
+  {{/services}}
