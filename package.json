@@ -1,6 +1,6 @@
 {
   "name": "mason",
-  "description": "Codemason CLI - craft and manage Docker apps with ease.",
+  "description": "Mason CLI - craft and manage Docker apps with ease.",
   "version": "0.0.1",
   "author": "Ben M",
   "license": "MIT",
@@ -10,7 +10,11 @@
     "colors": "1.1.2",
     "handlebars": "^4.0.5",
     "lodash": "^4.13.1",
-    "minimist": "1.2.0"
+    "minimist": "1.2.0",
+    "namor": "^0.2.1",
+    "node-persist": "0.0.11",
+    "read": "^1.0.7",
+    "request": "^2.72.0"
   },
   "devDependencies": {
     "mocha": "*",
