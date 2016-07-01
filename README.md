@@ -26,7 +26,7 @@ Or if you want to get a little bit more specific you can specify exactly what co
 ```
 $ mason craft --with="php, nginx, mysql"
 ```
-![laravel-gitlab](craft-command.png)
+![mason-craft-command](craft-command.png)
 
 
 ### Supported Setups
