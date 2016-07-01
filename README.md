@@ -26,6 +26,8 @@ Or if you want to get a little bit more specific you can specify exactly what co
 ```
 $ mason craft --with="php, nginx, mysql"
 ```
+![laravel-gitlab](craft-command.png)
+
 
 ### Supported Setups
 We aim to support as many popular frameworks and architectures as possible.
