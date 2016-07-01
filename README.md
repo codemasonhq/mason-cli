@@ -16,6 +16,9 @@ npm install --global mason
 Now you've installed Mason, you're ready to start building and deploying applications!
 
 ### The `craft` command
+
+![mason-craft-command](craft-command.png)
+
 You can use the `craft` command to Dockerize your application.
 ```
 $ mason craft laravel 
@@ -26,7 +29,6 @@ Or if you want to get a little bit more specific you can specify exactly what co
 ```
 $ mason craft --with="php, nginx, mysql"
 ```
-![mason-craft-command](craft-command.png)
 
 
 ### Supported Setups
