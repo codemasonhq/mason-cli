@@ -2,7 +2,7 @@
 
 The Mason CLI makes getting started with Docker a breeze. 
 
-We've carefully selected and specifically created Docker images that play together nicely. So you can Dockerize your apps with a single command. It's like buildpacks for Docker.
+We've carefully selected and specifically created Docker images that play together nicely so you can Dockerize your apps with a single command. It's like buildpacks for Docker.
 
 Whether you're new to Docker or a pro, you'll love how it just works straight out of the box.
 
@@ -13,7 +13,7 @@ npm install --global mason
 ```
 
 ## Usage
-Now you've installed Mason, you're ready to 
+Now you've installed Mason, you're ready to start building and deploying applications!
 
 ### The `craft` command
 You can use the `craft` command to Dockerize your application.
