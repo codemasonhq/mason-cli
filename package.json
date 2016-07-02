@@ -6,7 +6,7 @@
   "license": "MIT",
   "main": "./lib/mason.js",
   "bin": {
-    "mason": "./lib/cli.js",
+    "mason": "./lib/cli.js"
   },
   "dependencies": {
     "colors": "1.1.2",
