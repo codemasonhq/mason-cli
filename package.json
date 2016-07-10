@@ -15,6 +15,7 @@
     "minimist": "1.2.0",
     "namor": "^0.2.1",
     "node-persist": "0.0.11",
+    "progress": "^1.1.8",
     "read": "^1.0.7",
     "request": "^2.72.0"
   },
