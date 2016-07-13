@@ -9,7 +9,7 @@ Whether you're new to Docker or a pro, you'll love how it just works straight ou
 ## Installation
 Install the Mason CLI as a global NPM package like so:
 ```
-npm install --global mason
+npm install --global codemason
 ```
 
 ## Usage
@@ -43,10 +43,8 @@ We aim to support as many popular frameworks and architectures as possible.
 - NGINX
 
 ## Example Flow 
-
-- Create a new directory for your new application `mkdir ~/pebble`
+- Create a new Laravel project  `laravel new pebble`
 - Change into your new directory `cd ~/pebble` 
-- Create a new Laravel project within your directory `laravel new pebble`
 - Dockerize Laravel with `mason craft laravel`
 - Spin up your environment `docker-compose up`
 
