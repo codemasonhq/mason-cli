@@ -9,7 +9,7 @@
 version: '2'
 services:
   {{#instances}}
-  {{name}}:
+  app:
     build: . 
     {{#volumes}} 
     volumes:
@@ -17,6 +17,12 @@ services:
       - {{@key}}:{{this}}
       {{/each}}
     {{/volumes}}
+    {{#if ports}} 
+    ports:
+      {{#ports}}
+      - "{{this}}"
+      {{/ports}}
+    {{/if}}
   {{/instances}}
 
   {{#services}}
