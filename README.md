@@ -43,7 +43,7 @@ We aim to support as many popular frameworks and architectures as possible.
 
 #### Example Flow 
 - Create a new Laravel project  `laravel new pebble`
-- Change into your new directory `cd ~/pebble` 
+- Change into your new directory `cd pebble/` 
 - Dockerize Laravel with `mason craft laravel`
 - Spin up your environment `docker-compose up`
 
