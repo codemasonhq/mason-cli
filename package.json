@@ -10,11 +10,13 @@
   },
   "dependencies": {
     "colors": "1.1.2",
+    "download-git-repo": "^0.1.2",
     "fs-extra": "^0.30.0",
     "handlebars": "^4.0.5",
     "lodash": "^4.13.1",
     "minimist": "1.2.0",
     "namor": "^0.2.1",
+    "node-env-file": "^0.1.8",
     "node-persist": "0.0.11",
     "progress": "^1.1.8",
     "read": "^1.0.7",
