@@ -13,6 +13,16 @@ npm install --global codemason
 ```
 Prerequisites: [Git](https://git-scm.com/downloads), [Docker](https://docs.docker.com/engine/installation/)
 
+## Quick Start
+- Create a new Laravel project  `laravel new pebble`
+- Change into your new directory `cd pebble/` 
+- Dockerize Laravel with `mason craft laravel`
+- Spin up your environment `docker-compose up`
+
+**That's all!** You're now running your Laravel application with Docker!
+
+You'll be able to access your application at `http://<docker-ip>`, where `<docker-ip>` is the boot2docker ip or localhost if you are running Docker natively.
+
 ## Usage
 Now you've installed Mason, you can Dockerize your applications with just one command!
 ```
