@@ -11,6 +11,7 @@ Install the Mason CLI as a global NPM package like so:
 ```
 npm install --global codemason
 ```
+Prerequisites: [Git](https://git-scm.com/downloads), [Docker](https://docs.docker.com/engine/installation/)
 
 ## Usage
 Now you've installed Mason, you can Dockerize your applications with just one command!
