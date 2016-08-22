@@ -29,6 +29,9 @@ services:
         {{@key}}: {{this}}
       {{/each}}
     {{/environment}}
+    {{#if command}} 
+    command: {{command}}
+    {{/if}}
   {{/instances}}
 
   {{#services}}
@@ -50,5 +53,7 @@ services:
         {{@key}}: {{this}}
       {{/each}}
     {{/environment}}
-
+    {{#if command}} 
+    command: {{command}}
+    {{/if}}
   {{/services}}
