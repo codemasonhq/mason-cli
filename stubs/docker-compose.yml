@@ -23,6 +23,12 @@ services:
       - "{{this}}"
       {{/ports}}
     {{/if}}
+    {{#environment}}
+    environment: 
+      {{#each this}}
+        {{@key}}: {{this}}
+      {{/each}}
+    {{/environment}}
   {{/instances}}
 
   {{#services}}
