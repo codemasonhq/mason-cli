@@ -7,7 +7,7 @@ Whether you're new to Docker or a pro, you'll love how it just works straight ou
 ![mason-craft-command](craft-command.png)
 
 ## Installation
-Install the Mason CLI as a global NPM package like so:
+Install the Mason CLI as a global NPM package:
 ```
 npm install --global codemason
 ```
@@ -139,7 +139,7 @@ module.exports = {
 #### Services vs Instances
 In the Mason JSON for your craft kit, you may set the `type` as `service` or `instance`. 
 
-An `instance` is your main process, it runs your application (generally an `instance` is a language). It is used as the base image to build `FROM` in your Dockerfile. Currently the craft command only supports one `instance` per kit.
+An `instance` is your main process: it runs your application (generally an `instance` is a language). It is used as the base image to build `FROM` in your Dockerfile. Currently the craft command only supports one `instance` per kit.
 
 And a `service` is typically something your app utilises like MySQL, Redis or Postgres etc.
 
