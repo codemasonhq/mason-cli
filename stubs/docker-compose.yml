@@ -8,35 +8,14 @@
 #
 version: '2'
 services:
-  {{#instances}}
-  app:
-    build: . 
-    {{#volumes}} 
-    volumes:
-      {{#each this}}
-      - {{@key}}:{{this}}
-      {{/each}}
-    {{/volumes}}
-    {{#if ports}} 
-    ports:
-      {{#ports}}
-      - "{{this}}"
-      {{/ports}}
-    {{/if}}
-    {{#environment}}
-    environment: 
-      {{#each this}}
-        {{@key}}: {{this}}
-      {{/each}}
-    {{/environment}}
-    {{#if command}} 
-    command: {{command}}
-    {{/if}}
-  {{/instances}}
-
   {{#services}}
   {{name}}:
+    {{#if build}} 
+    build: {{build}}
+    {{/if}}
+    {{#if image}} 
     image: {{image}}
+    {{/if}}
     {{#volumes}} 
     volumes:
       {{#each this}}
@@ -56,4 +35,5 @@ services:
     {{#if command}} 
     command: {{command}}
     {{/if}}
+    
   {{/services}}

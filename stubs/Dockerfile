@@ -1,4 +1,4 @@
-FROM {{ image }}
+FROM {{ base }}
 
 MAINTAINER Your Name <email@example.com>
 
