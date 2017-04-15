@@ -19,7 +19,7 @@ services:
     {{#volumes}} 
     volumes:
       {{#each this}}
-      - {{@key}}:{{this}}
+      - {{@key}}:{{{this}}}
       {{/each}}
     {{/volumes}}
     ports:
@@ -28,12 +28,12 @@ services:
       {{/ports}}
     {{#environment}}
     environment: 
-      {{#each this}}
-        {{@key}}: {{this}}
-      {{/each}}
+    {{#each this}}
+      {{@key}}: {{{this}}}
+    {{/each}}
     {{/environment}}
     {{#if command}} 
-    command: {{command}}
+    command: {{{command}}}
     {{/if}}
     
   {{/services}}
