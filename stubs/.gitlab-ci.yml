@@ -5,10 +5,10 @@ services:
  - docker:dind
 
 before_script:
-  - docker login -u=gitlab-ci-token -e=$CI_BUILD_EMAIL -p $CI_BUILD_TOKEN {{ registry }}
+  - docker login -u=gitlab-ci-token -e=$CI_BUILD_EMAIL -p $CI_BUILD_TOKEN $CI_REGISTRY
 
 build: 
   stage: build
   script: 
-    - docker build -t {{ registry }}/{{ path }}:latest .
-    - docker push {{ registry }}/{{ path }}:latest
+    - docker build -t $CI_REGISTRY_IMAGE:latest .
+    - docker push $CI_REGISTRY_IMAGE:latest
