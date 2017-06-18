@@ -9,6 +9,7 @@
     "mason": "./lib/cli.js"
   },
   "dependencies": {
+    "analytics-node": "^2.4.1",
     "colors": "1.1.2",
     "download-git-repo": "^0.1.2",
     "fs-extra": "^0.30.0",
