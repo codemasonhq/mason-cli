@@ -5,7 +5,7 @@ services:
  - docker:dind
 
 before_script:
-  - docker login -u=gitlab-ci-token -e=$CI_BUILD_EMAIL -p $CI_BUILD_TOKEN $CI_REGISTRY
+  - docker login -u=gitlab-ci-token -p $CI_BUILD_TOKEN $CI_REGISTRY
 
 build: 
   stage: build
