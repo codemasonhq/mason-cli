@@ -1,7 +1,7 @@
 {
   "name": "codemason",
   "description": "Mason CLI - craft Docker apps with ease.",
-  "version": "0.8.7",
+  "version": "0.8.8",
   "author": "Ben M <git@bmagg.com>",
   "license": "MIT",
   "main": "./lib/mason.js",
