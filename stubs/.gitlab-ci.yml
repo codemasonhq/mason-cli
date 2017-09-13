@@ -10,5 +10,5 @@ before_script:
 build: 
   stage: build
   script: 
-    - docker build -t $CI_REGISTRY_IMAGE/app:latest .
-    - docker push $CI_REGISTRY_IMAGE/app:latest
+    - docker build -t $CI_REGISTRY_IMAGE:latest .
+    - docker push $CI_REGISTRY_IMAGE:latest
