@@ -4,6 +4,8 @@ The Mason CLI makes getting started with Docker a breeze - it's like buildpacks 
 
 Whether you're new to Docker or a pro, you'll love how it just works straight out of the box.
 
+Then with [Codemason](https://codemason.io), you can deploy your app to a server in a matter of minutes!
+
 ![mason-craft-command](craft-command.png)
 
 ## Installation
@@ -84,7 +86,7 @@ A nice example is the [laravel craft kit](https://github.com/CodemasonHQ/craft-k
 | -------- | --------------------------------------------------------------------------------- |
 | name     | *[string]* Simple name for your craft kit                                         |
 | default  | *[array]* Default containers for craft kit to use                                 | 
-| masonJson | *[object]* [Mason JSON](http://mason.ci/docs/mason-json) for available containers |
+| masonJson | *[object]* [Mason JSON](https://codemason.io/docs/mason-json) for available containers |
 
 Example
 ```javascript
@@ -99,7 +101,7 @@ module.exports = {
 ```
 
 ### Mason JSON 
-Define the available containers using [Mason JSON](mason.ci/docs/mason-json). Mason JSON is a JSON schema that is deliberately modelled of the `docker-compose.yml` file. It makes it a little bit easier to deal with all the Docker configuration options and adds a little bit of extra functionality. 
+Define the available containers using [Mason JSON](https://codemason.io/docs/mason-json). Mason JSON is a JSON schema that is deliberately modelled of the `docker-compose.yml` file. It makes it a little bit easier to deal with all the Docker configuration options and adds a little bit of extra functionality. 
 
 **mason-json/php.js**
 ```javascript
@@ -136,15 +138,8 @@ module.exports = {
 }
 ```
 
-#### Services vs Instances
-In the Mason JSON for your craft kit, you may set the `type` as `service` or `instance`. 
-
-An `instance` is your main process: it runs your application (generally an `instance` is a language). It is used as the base image to build `FROM` in your Dockerfile. Currently the craft command only supports one `instance` per kit.
-
-And a `service` is typically something your app utilises like MySQL, Redis or Postgres etc.
-
 ## Additional Documentation 
-Additional documentation for the Mason CLI can be found on the [Codemason website](http://mason.ci/docs/mason-cli).
+Additional documentation for the Mason CLI can be found on the [Codemason website](https://codemason.io/docs/mason-cli).
 
 ## License
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
