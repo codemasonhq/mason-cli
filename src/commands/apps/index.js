@@ -1,16 +1,44 @@
-const {helpers} = require('../../util/helpers');
 const {Command} = require('@oclif/command')
-const axios = require('axios');
+const helpers = require('../../util/helpers')
+const axios = require('axios')
+const chalk = require('chalk')
+const _ = require('lodash')
 
 class AppsIndex extends Command {
-  async run() {
+    
+    async run() {
 
-  	// axios.get('http://localhost/v1/codemason/applications?api_token=xzmr8HM6FEmz6YGD8PSwUsBTwocM1jQ6wk6sPLm0xPIEiaXAwfHerNqpdfnk')
-  	// 	.then((response) => {
-  	// 		console.log(response.data);
-  	// 	});
+        this.log("Your apps (" + chalk.cyan(_.get(this.config, 'userConfig.team.slug')) + ")");
 
-  }
+        const apps = await this.getApps().catch((e) => {
+            this.error(e)
+        });
+
+        _.each(apps, (app) => this.log(` ${app.name}`));
+
+    }
+
+    async getApps() {
+        
+        var endpoint = _.get(this.config, 'userConfig.endpoint');
+        var team = _.get(this.config, 'userConfig.team.slug');
+        var token = _.get(this.config, 'userConfig.user.token');
+
+        return axios.get(`${endpoint}/v1/${team}/applications?api_token=${token}`)
+            .then((response) => {
+                return _.get(response, 'data');
+            })
+            .catch((error) => {
+
+                if(_.has(error, 'response.data')) { 
+                    throw helpers.parseApiError(error.response.data);
+                }
+
+                throw error.toString().replace('Error: ', '');
+                
+            })
+    }
+
 }
 
 AppsIndex.description = 'list your apps'
