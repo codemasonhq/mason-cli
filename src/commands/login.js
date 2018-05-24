@@ -2,10 +2,12 @@ const {Command, flags} = require('@oclif/command')
 const {cli} = require('cli-ux')
 
 const helpers = require('../util/helpers')
-const child = require('child_process');
+const child = require('child_process')
 const axios = require('axios')
+const chalk = require('chalk')
 const _ = require('lodash')
 const os = require("os")
+
 
 /**
  * Path to users ssh key
@@ -31,7 +33,7 @@ class LoginCommand extends Command {
             this.error(e);
         });
 
-        this.log("Successfully logged in as " + _.get(this.config, 'userConfig.user.email'))
+        this.log("Logged in as " + chalk.green(_.get(this.config, 'userConfig.user.email')));
     
     }
 
