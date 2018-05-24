@@ -6,7 +6,7 @@ const child = require('child_process')
 const axios = require('axios')
 const chalk = require('chalk')
 const _ = require('lodash')
-const os = require("os")
+const os = require('os')
 
 
 /**
