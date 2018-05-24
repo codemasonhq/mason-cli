@@ -1,20 +1,11 @@
 var _ = require('lodash');
 var fs = require("fs");
 var path = require("path");
-var colors = require("colors")
-var read = require("read")
+// var colors = require("colors")
+// var read = require("read")
 var child = require('child_process');
 var storage = require('node-persist');
-var Analytics = require('analytics-node');
-
-var sig = null;
-
-/**
- * This looks like nothing but there is an invisible seperator character here 
- * It's used to beat `read`'s .trim() method they apply to the prompts.
- * http://www.fileformat.info/info/unicode/char/2063/index.htm
- */
-var INVISIBLE_CHARACTER = exports.INVISIBLE_CHARACTER = "⁣";
+// var Analytics = require('analytics-node');
 
 /**
  * Retrieve directory of this package
@@ -27,70 +18,9 @@ var PACKAGE_DIR = exports.PACKAGE_DIR = path.join(path.dirname(require.main.file
 var CURRENT_WORKING_DIR = exports.CURRENT_WORKING_DIR = process.cwd();
 
 /**
- * Current version of the Mason CLI
- */
-var CLI_VERSION = exports.CLI_VERSION = require('../../package.json').version;
-
-/**
- * Options for the spinner
- */
-var SPINNER = exports.SPINNER = {
-    "interval": 80,
-    "frames": [
-        "      ⠋ ",
-        "      ⠙ ",
-        "      ⠹ ",
-        "      ⠸ ",
-        "      ⠼ ",
-        "      ⠴ ",
-        "      ⠦ ",
-        "      ⠧ ",
-        "      ⠇ ",
-        "      ⠏ "
-    ]
-}
-
-/**
  * Set the analytics helper to track usage
  */
-var analytics = exports.analytics = new Analytics('VpPJIWHX39N6iqKEiFP68XkAMpmXbAYT', { flushAt: 1, flushAfter: 1 });
-
-/**
- * Set the options for our pesistance storage
- */
-var initSyncOptions = exports.initSyncOptions = {
-    dir: path.dirname(require.main.filename) + "/../persist"
-}
-
-/**
- * Log message to the console
- */
-var log = exports.log = function(){
-    var args = Array.prototype.slice.call(arguments)
-    args.unshift(sig)
-    args = args.filter(function(n){ return n != undefined });
-    console.log.apply(console, args)
-    return this
-};
-
-/**
- * Log warning to the console
- */
-var warning = exports.warning = function(msg){
-    console.log("\n    Warning".yellow, "-", msg)
-    console.log()
-};
-
-/**
- * Log abort message then abort script
- */
-var abort = exports.abort = function(msg){
-      msg === null
-        ? console.log("\n    Aborted".red)
-        : console.log("\n    Aborted".red, "-", msg)
-    console.log()
-    process.exit(1);
-};
+// var analytics = exports.analytics = new Analytics('VpPJIWHX39N6iqKEiFP68XkAMpmXbAYT', { flushAt: 1, flushAfter: 1 });
 
 /**
  * Check to see if a file exists
@@ -158,15 +88,12 @@ var getTrackingUserId = exports.getTrackingUserId = function() {
 }
 
 /**
- * Successful request check
+ * Parse the errors returned by the API into a standard format
  */
-var isSuccessful = exports.isSuccessful = function(status) {
-    return status < 400;
+const parseApiError = exports.parseApiError = function(error) {
+    return _.join(_.flatten(_.toArray(error)), "\n" + " ".repeat('Error:'.length));
 }
 
-/**
- * 
- */
 var logError = exports.logError = function(error) {
     
     var self = this;
