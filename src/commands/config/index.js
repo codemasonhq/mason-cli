@@ -1,6 +1,6 @@
 const {Command} = require('@oclif/command')
 
-class ConfigIndex extends Command {
+class ConfigIndexCommand extends Command {
 
     async run() {
         this.log(this.config.userConfig);
@@ -8,6 +8,6 @@ class ConfigIndex extends Command {
 
 }
 
-ConfigIndex.description = 'list cli config'
+ConfigIndexCommand.description = 'list cli config'
 
-module.exports = ConfigIndex
+module.exports = ConfigIndexCommand

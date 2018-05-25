@@ -4,7 +4,7 @@ const axios = require('axios')
 const chalk = require('chalk')
 const _ = require('lodash')
 
-class AppsIndex extends Command {
+class AppsIndexCommand extends Command {
     
     async run() {
 
@@ -41,6 +41,6 @@ class AppsIndex extends Command {
 
 }
 
-AppsIndex.description = 'list your apps'
+AppsIndexCommand.description = 'list your apps'
 
-module.exports = AppsIndex
+module.exports = AppsIndexCommand

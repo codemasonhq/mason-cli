@@ -1,10 +1,10 @@
 const {Command} = require('@oclif/command')
 const Config = require('../../config')
 
-class ConfigSet extends Command {
+class ConfigSetCommand extends Command {
 
     async run() {
-        const {args} = this.parse(ConfigSet);
+        const {args} = this.parse(ConfigSetCommand);
         const config = new Config(this.config.configDir);
 
         config.set(args['key'], args['value']);
@@ -13,7 +13,7 @@ class ConfigSet extends Command {
 
 }
 
-ConfigSet.args = [
+ConfigSetCommand.args = [
     {
         name: 'key',
         required: true,
@@ -24,6 +24,6 @@ ConfigSet.args = [
     }
 ]
 
-ConfigSet.description = 'set a cli config value'
+ConfigSetCommand.description = 'set a cli config value'
 
-module.exports = ConfigSet
+module.exports = ConfigSetCommand

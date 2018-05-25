@@ -1,10 +1,10 @@
 const {Command} = require('@oclif/command')
 const Config = require('../../config')
 
-class ConfigUnset extends Command {
+class ConfigUnsetCommand extends Command {
 
     async run() {
-        const {args} = this.parse(ConfigUnset);
+        const {args} = this.parse(ConfigUnsetCommand);
         const config = new Config(this.config.configDir);
 
         config.unset(args['key']);
@@ -13,13 +13,13 @@ class ConfigUnset extends Command {
 
 }
 
-ConfigUnset.args = [
+ConfigUnsetCommand.args = [
     {
         name: 'key',
         required: true,
     }
 ]
 
-ConfigUnset.description = 'unset a cli config value'
+ConfigUnsetCommand.description = 'unset a cli config value'
 
-module.exports = ConfigUnset
+module.exports = ConfigUnsetCommand
