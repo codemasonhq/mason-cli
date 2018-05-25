@@ -8,7 +8,7 @@ class AppsIndexCommand extends Command {
     
     async run() {
 
-        this.log("Your apps (" + chalk.cyan(_.get(this.config, 'userConfig.team.slug')) + ")");
+        this.log("Your apps (" + chalk.green(_.get(this.config, 'userConfig.team.slug')) + ")");
 
         const apps = await this.getApps().catch((e) => {
             this.error(e)
