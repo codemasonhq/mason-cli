@@ -80,4 +80,6 @@ AppsCreateCommand.flags = {
     remote: flags.string({char: 'r', default: 'codemason', description: 'the git remote to create'})
 }
 
+AppsCreateCommand.description = 'create a new app'
+
 module.exports = AppsCreateCommand
