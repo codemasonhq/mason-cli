@@ -22,7 +22,7 @@ class UserConfig {
 
     async read() {
         try {
-            return await fs.readJSON(path.join(this.configDir, 'config.json'));
+            return await fs.readJSON(this.file);
         } catch (err) {
             if (err.code !== 'ENOENT') throw err
             return defaultConfig;
