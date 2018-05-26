@@ -12,7 +12,10 @@
     "@oclif/config": "^1",
     "@oclif/plugin-help": "^1",
     "axios": "^0.18.0",
-    "node-persist": "^3.0.1"
+    "cli-table": "^0.3.1",
+    "node-env-file": "^0.1.8",
+    "node-persist": "^3.0.1",
+    "yamljs": "^0.3.0"
   },
   "devDependencies": {
     "@oclif/dev-cli": "^1",
