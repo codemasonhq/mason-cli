@@ -109,8 +109,8 @@ class AppsDeployCommand extends Command {
                 service.image = _.get(this.config, 'userConfig.registry') + "/" + project.toLowerCase();
 
                 // Load environment file, if available 
-                if(!flags['no-env'] && helpers.fileExists(flags['env'])) {
-                    service.environment = _.merge(service.environment, env(flags['env']));
+                if(!flags['no-env-file'] && helpers.fileExists(flags['env-file'])) {
+                    service.environment = _.merge(service.environment, env(flags['env-file']));
                 }
 
             }
@@ -183,12 +183,12 @@ AppsDeployCommand.flags = {
         description: 'path to a mason json file',
         exclusive: ['compose-file'],  
     }),
-    'env': flags.string({
+    'env-file': flags.string({
         default: '.env',
         description: 'path to env file to load',
         exclusive: ['mason-json'],  
     }),
-    'no-env': flags.boolean({
+    'no-env-file': flags.boolean({
         exclusive: ['mason-json']
     }),
     environment: flags.string({char: 'e', description: 'the environment to deploy the app to'}),
