@@ -18,7 +18,7 @@ class AppsCreateCommand extends Command {
             this.error(e);
         });
 
-        await this.createGit(args.name).catch((e) => {
+        await this.createGit(args.name, flags.remote).catch((e) => {
             this.error(e);
         });
 
@@ -52,9 +52,11 @@ class AppsCreateCommand extends Command {
 
     }
 
-    async createGit(name) {
+    async createGit(name, remote) {
         try {
-            child.execSync('git remote add codemason git@git.mason.ci:' + _.get(this.config, 'userConfig.team.slug').toLowerCase() + '/' + name.toLowerCase(), {stdio: 'pipe'});
+            var git = _.get(this.config, 'git');
+            var team =  _.get(this.config, 'userConfig.team.slug').toLowerCase();
+            child.execSync(`git remote add ${remote} git@${git}:${team}/${name.toLowerCase()}`, {stdio: 'pipe'});
             this.log(chalk.grey(" ... Added git remote codemason"))
             return
         } catch(e) {
