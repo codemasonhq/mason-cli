@@ -3,6 +3,7 @@ const {CLIError} = require('@oclif/errors')
 const {cli} = require('cli-ux')
 
 const helpers = require('../../util/helpers')
+const env = require('node-env-file')
 const axios = require('axios')
 const chalk = require('chalk')
 const _ = require('lodash')
@@ -49,6 +50,11 @@ class ServicesCreateCommand extends Command {
         var endpoint = _.get(this.config, 'userConfig.endpoint');
         var team = _.get(this.config, 'userConfig.team.slug');
         var token = _.get(this.config, 'userConfig.user.token');
+
+        // Load the environment file
+        if(flags['env-file'] && helpers.fileExists(flags['env-file'])) {
+            environment = env(flags['env-file']);
+        }
 
         // Parse any provided environment variables 
         _.each(_.get(flags, 'env', []), (env) => {
@@ -140,7 +146,10 @@ ServicesCreateCommand.flags = {
         char: 'l',
         description: 'link to another service',
         multiple: true,
-    })
+    }),
+    'env-file': flags.string({
+        description: 'path to env file to load',
+    }),
 }
 
 ServicesCreateCommand.description = 'create a new service'
