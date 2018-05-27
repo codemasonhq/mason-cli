@@ -3,8 +3,10 @@ var fs = require("fs");
 var path = require("path");
 // var colors = require("colors")
 // var read = require("read")
+var Table = require('cli-table')
 var child = require('child_process');
 var storage = require('node-persist');
+
 // var Analytics = require('analytics-node');
 
 /**
@@ -93,6 +95,20 @@ var getTrackingUserId = exports.getTrackingUserId = function() {
 const parseApiError = exports.parseApiError = function(error) {
     return _.join(_.flatten(_.toArray(error)), "\n" + " ".repeat('Error:'.length));
 }
+
+/**
+ * Return a borderless CLI table
+ */
+const borderlessTable = exports.borderlessTable = function(paddingLeft, paddingRight) {
+    return new Table({
+          chars: { 'top': '' , 'top-mid': '' , 'top-left': '' , 'top-right': ''
+                 , 'bottom': '' , 'bottom-mid': '' , 'bottom-left': '' , 'bottom-right': ''
+                 , 'left': '' , 'left-mid': '' , 'mid': '' , 'mid-mid': ''
+                 , 'right': '' , 'right-mid': '' , 'middle': ' ' },
+          style: { 'padding-left': paddingLeft ? paddingLeft : 0, 'padding-right': paddingRight ? paddingRight : 0 }
+        });
+}
+
 
 var logError = exports.logError = function(error) {
     

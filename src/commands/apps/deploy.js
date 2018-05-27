@@ -4,7 +4,6 @@ const {cli} = require('cli-ux')
 const helpers = require('../../util/helpers')
 const child = require('child_process')
 const env = require('node-env-file')
-const Table = require('cli-table')
 const axios = require('axios')
 const chalk = require('chalk')
 const YAML = require('yamljs')
@@ -41,14 +40,7 @@ class AppsDeployCommand extends Command {
         this.log(chalk.cyan(` ⬢ ${args.name}`) + chalk.grey(` | ${ _.get(this.config, 'userConfig.endpoint')}/applications/${args.name}`));
         this.log();
 
-        const table = new Table({
-          chars: { 'top': '' , 'top-mid': '' , 'top-left': '' , 'top-right': ''
-                 , 'bottom': '' , 'bottom-mid': '' , 'bottom-left': '' , 'bottom-right': ''
-                 , 'left': '' , 'left-mid': '' , 'mid': '' , 'mid-mid': ''
-                 , 'right': '' , 'right-mid': '' , 'middle': ' ' },
-          style: { 'padding-left': 4, 'padding-right': 0 }
-        });
-
+        const table = helpers.borderlessTable(4);
         table.push(['NAME', 'IMAGE',  'COMMAND', 'PORTS']);
 
         _.each(services, function(service) {
