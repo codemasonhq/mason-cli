@@ -11,16 +11,19 @@ class AppsCreateCommand extends Command {
 
         const {args} = this.parse(AppsCreateCommand);
         const {flags} = this.parse(AppsCreateCommand)
-        
+
         this.log("Creating app on Codemason...");
 
         await this.createApp(args.name).catch((e) => {
             this.error(e);
         });
 
-        await this.createGit(args.name, flags.remote).catch((e) => {
-            this.error(e);
-        });
+        if(!flags['no-remote']) {
+            await this.createGit(args.name, flags.remote).catch((e) => {
+                this.error(e);
+            });    
+        }
+        
 
     }
 
@@ -79,7 +82,8 @@ AppsCreateCommand.args = [
 
 AppsCreateCommand.flags = {
     environment: flags.string({char: 'e', description: 'the environment to create the app in'}),
-    remote: flags.string({char: 'r', default: 'codemason', description: 'the git remote to create'})
+    remote: flags.string({char: 'r', default: 'codemason', description: 'the git remote to create'}),
+    'no-remote': flags.boolean({char: 'n', description: 'do not add a git remote'})
 }
 
 AppsCreateCommand.description = 'create a new app'
