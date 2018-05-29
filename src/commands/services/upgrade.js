@@ -197,7 +197,7 @@ ServicesUpgradeCommand.args = [
         parse: ((input) => { // validate service arg is formatted correctly
             var parts = input.split("/");
             if(parts.length != 2) {
-               throw new CLIError('my friendly error') 
+               throw new CLIError('Invalid format for service arg') 
             }
             return parts;
         }), 
