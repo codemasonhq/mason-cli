@@ -19,12 +19,24 @@ class ServicesIndexCommand extends Command {
         table.push(['NAME', 'IMAGE',  'COMMAND', 'PORTS']);
 
         _.each(services, function(service) {
+
+            var ports = _.get(service, 'rancher.launchConfig.ports', []);
+            if(_.isNull(ports)) {
+                ports = [];
+            }
+
+            var command = _.get(service, 'rancher.launchConfig.command', []);
+            if(_.isNull(command)) {
+                command = [];
+            }
+
             table.push([
                 _.get(service, 'name'), 
                 _.get(service, 'rancher.launchConfig.imageUuid', '').replace('docker:', ''), 
-                _.get(service, 'rancher.launchConfig.command', []).join(" "), 
-                _.get(service, 'rancher.launchConfig.ports', []).join(", ")
-            ])
+                command.join(" "), 
+                ports.join(", ")
+            ]);
+            
         })
 
         this.log(table.toString());
