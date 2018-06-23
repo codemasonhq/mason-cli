@@ -10,7 +10,7 @@ class AppsCreateCommand extends Command {
     async run() {
 
         const {args} = this.parse(AppsCreateCommand);
-        const {flags} = this.parse(AppsCreateCommand)
+        const {flags} = this.parse(AppsCreateCommand);
 
         this.log("Creating app on Codemason...");
 
@@ -19,7 +19,7 @@ class AppsCreateCommand extends Command {
         });
 
         if(!flags['no-remote']) {
-            await this.createGit(args.name, flags.remote).catch((e) => {
+            await this.createRemote(args.name, flags.remote).catch((e) => {
                 this.error(e);
             });    
         }
@@ -55,13 +55,17 @@ class AppsCreateCommand extends Command {
 
     }
 
-    async createGit(name, remote) {
+    async createRemote(name, remote) {
         try {
-            var git = _.get(this.config, 'git');
+
             var team =  _.get(this.config, 'userConfig.team.slug').toLowerCase();
-            child.execSync(`git remote add ${remote} git@${git}:${team}/${name.toLowerCase()}`, {stdio: 'pipe'});
-            this.log(chalk.grey(" ... Added git remote codemason"))
-            return
+            var git = _.get(this.config, 'userConfig.git');
+            var name = name.toLowerCase();
+
+            helpers.createGitRemote(git, team, name, remote)
+            this.log(chalk.grey(` ... Added git remote ${remote}`));
+            return;
+
         } catch(e) {
             this.warn("Could not add git remote");
             this.warn(e.message);
