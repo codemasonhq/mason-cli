@@ -90,6 +90,12 @@ var getTrackingUserId = exports.getTrackingUserId = function() {
 }
 
 /**
+ * Add a git remote
+ */
+const createGitRemote = exports.createGitRemote = function(git, team, name, remote) {
+    child.execSync(`git remote add ${remote} git@${git}:${team}/${name.toLowerCase()}`, {stdio: 'pipe'});
+}
+/**
  * Parse the errors returned by the API into a standard format
  */
 const parseApiError = exports.parseApiError = function(error) {
