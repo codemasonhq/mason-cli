@@ -46,10 +46,7 @@
     "bin": "mason",
     "plugins": [
       "@oclif/plugin-help"
-    ],
-    "hooks": {
-      "init": "./src/hooks/init/config"
-    }
+    ]
   },
   "repository": "codemasonhq/mason-cli",
   "scripts": {

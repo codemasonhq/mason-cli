@@ -1,14 +1,19 @@
-const {Command} = require('@oclif/command')
-const Config = require('../../config')
+const {Command} = require('../../base')
+
+const fs = require('fs-extra')
+const path = require('path')
 
 class ConfigUnsetCommand extends Command {
 
     async run() {
-        const {args} = this.parse(ConfigUnsetCommand);
-        const config = new Config(this.config.configDir);
 
-        config.unset(args['key']);
-        this.log("Setting " + args['key'] + "... done")
+        const {args} = this.parse(ConfigUnsetCommand);
+        const config = this.config.userConfig;
+
+        delete config[args['key']];
+        await fs.outputJSON(path.join(this.config.configDir, 'config.json'), config, {spaces: 2});
+        this.log("Unsetting " + args['key'] + "... done")
+
     }
 
 }

@@ -1,4 +1,4 @@
-const {Command, flags} = require('@oclif/command')
+const {Command, flags} = require('../../base')
 const {cli} = require('cli-ux')
 
 const helpers = require('../../util/helpers')

@@ -1,4 +1,4 @@
-const {Command} = require('@oclif/command')
+const {Command} = require('../../base')
 
 class ConfigGetCommand extends Command {
 

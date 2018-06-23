@@ -1,4 +1,4 @@
-const {Command, flags} = require('@oclif/command')
+const {Command, flags} = require('../../base')
 const helpers = require('../../util/helpers')
 const child = require('child_process')
 const axios = require('axios')
