@@ -26,7 +26,7 @@ class AppsDeployCommand extends Command {
         if(flags['mason-json']) {
             var masonJson = await this.parseMasonJson(args.name, flags['mason-json']);
         } else {
-            var masonJson = await this.parseComposeFile(args.name, flags['compose-file']);
+            var masonJson = await this.parseComposeFile(args.name, _.get(flags, 'compose-file', 'docker-compose.yml'));
         }
 
         // Deploy
