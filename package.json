@@ -11,6 +11,7 @@
     "@oclif/command": "^1",
     "@oclif/config": "^1",
     "@oclif/plugin-help": "^1",
+    "@oclif/plugin-plugins": "^1.5.2",
     "axios": "^0.18.0",
     "cli-table": "^0.3.1",
     "node-env-file": "^0.1.8",
@@ -45,7 +46,8 @@
     "commands": "./src/commands",
     "bin": "mason",
     "plugins": [
-      "@oclif/plugin-help"
+      "@oclif/plugin-help",
+      "@oclif/plugin-plugins"
     ]
   },
   "repository": "codemasonhq/mason-cli",
