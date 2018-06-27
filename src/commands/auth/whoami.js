@@ -1,22 +1,19 @@
-const {Command, flags} = require('../../base')
+const {Command} = require('../../base')
 
 class AuthWhoamiCommand extends Command {
-    async run() {
-
-    	if(this.config.userConfig.user) {
-    		this.log("You are currently logged in.")
-    		this.log(`Name: ${this.config.userConfig.user.name}`);
-    		this.log(`Email: ${this.config.userConfig.user.email}`);
-    	} else {
-    		this.log("Not logged in");
-    	}
-
+  async run() {
+    if (this.config.userConfig.user) {
+      this.log('You are currently logged in.')
+      this.log(`Name: ${this.config.userConfig.user.name}`)
+      this.log(`Email: ${this.config.userConfig.user.email}`)
+    } else {
+      this.log('Not logged in')
     }
-
+  }
 }
 
 AuthWhoamiCommand.aliases = [
-    'whoami'
+  'whoami',
 ]
 
 AuthWhoamiCommand.description = 'display user info'

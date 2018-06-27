@@ -3,28 +3,24 @@ const fs = require('fs-extra')
 const path = require('path')
 
 let defaultConfig = {
-    endpoint: 'https://codemason.io',
-    registry: 'registry.mason.ci',
-    git: 'git.mason.ci',
-    remote: 'codemason'
+  endpoint: 'https://codemason.io',
+  registry: 'registry.mason.ci',
+  git: 'git.mason.ci',
+  remote: 'codemason',
 }
 
 class BaseCommand extends Command {
-
-    async init(err) {
-        
-        try {
-            this.config.userConfig = await fs.readJSON(path.join(this.config.configDir, 'config.json'))
-        } catch (err) {
-            if (err.code !== 'ENOENT') throw err
-            this.config.userConfig = defaultConfig;
-        }
-
+  async init() {
+    try {
+      this.config.userConfig = await fs.readJSON(path.join(this.config.configDir, 'config.json'))
+    } catch (err) {
+      if (err.code !== 'ENOENT') throw err
+      this.config.userConfig = defaultConfig
     }
-
+  }
 }
 
 module.exports = {
-    Command: BaseCommand,
-    flags: flags,
+  Command: BaseCommand,
+  flags: flags,
 }
