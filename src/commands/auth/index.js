@@ -1,10 +1,12 @@
-const {Command, flags} = require('../base')
+const {Command, flags} = require('../../base')
 const {cli} = require('cli-ux')
 
-const helpers = require('../util/helpers')
+const helpers = require('../../util/helpers')
 const child = require('child_process')
 const axios = require('axios')
 const chalk = require('chalk')
+const fs = require('fs-extra')
+const path = require('path')
 const _ = require('lodash')
 const os = require('os')
 
@@ -46,10 +48,10 @@ class LoginCommand extends Command {
                 password: password,
                 token_name: "Mason CLI - " + os.hostname().split('.').shift(),
             })
-            .then((response) => {
+            .then(async (response) => {
                 this.config.userConfig.user = {..._.get(response, 'data.user', {}), ..._.pick(_.get(response, 'data', {}), 'token')}
                 this.config.userConfig.team = _.pick(_.get(response, 'data.team', {}), ['slug', 'current_billing_plan'])
-                this.config.UserConfig.save(this.config.userConfig);
+                await fs.outputJSON(path.join(this.config.configDir, 'config.json'), this.config.userConfig, {spaces: 2});
                 return _.get(response, 'data.token');
             })
             .catch((error) => {
@@ -110,11 +112,15 @@ class LoginCommand extends Command {
 
 }
 
-LoginCommand.description = 'login to your Codemason account'
+LoginCommand.aliases = [
+    'login'
+]
 
 LoginCommand.flags = {
     email: flags.string({char: 'e', description: 'email'}),
     password: flags.string({char: 'p', description: 'password'}),
 }
+
+LoginCommand.description = 'login to your Codemason account'
 
 module.exports = LoginCommand
