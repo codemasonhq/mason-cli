@@ -1,17 +1,17 @@
 const {expect, test} = require('@oclif/test')
+const fs = require('fs-extra')
 
-describe('config/get', () => {
+describe('config:get', () => {
   test
   .stdout()
-  .command(['config/get'])
-  .it('runs hello', ctx => {
-    expect(ctx.stdout).to.contain('hello world')
+  .stderr()
+  .stub(fs, 'readJSON', () => {
+    return {
+      foo: 'bar',
+    }
   })
-
-  test
-  .stdout()
-  .command(['config/get', '--name', 'jeff'])
-  .it('runs hello --name jeff', ctx => {
-    expect(ctx.stdout).to.contain('hello jeff')
+  .command(['config:get', 'foo'])
+  .it('get config value', ctx => {
+    expect(ctx.stdout).to.equal('bar\n')
   })
 })
