@@ -8,11 +8,6 @@ const path = require('path')
 const _ = require('lodash')
 const os = require('os')
 
-/**
- * Path to users ssh key
- */
-let sshKeyPath = helpers.getUserHome() + '/.ssh/id_rsa'
-
 class LogoutCommand extends Command {
   async run() {
     cli.action.start('Logging out of your Codemason account')
@@ -33,7 +28,7 @@ class LogoutCommand extends Command {
     return axios.delete(`${_.get(this.config, 'userConfig.endpoint')}/v1/git/keys?api_token=${_.get(this.config, 'userConfig.user.token')}`, {
       params: {
         title: os.hostname(),
-        key: helpers.getSSHKey(sshKeyPath).toString(),
+        key: helpers.getSSHKey(this.config.home + '/.ssh/id_rsa').toString(),
       },
     })
     .catch(error => {

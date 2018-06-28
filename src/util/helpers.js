@@ -23,13 +23,6 @@ exports.fileExists = function (filePath) {
 }
 
 /**
- * Return the path to users home directory
- */
-exports.getUserHome = function () {
-  return process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME']
-}
-
-/**
  * Get the project from the git remote
  */
 exports.getProjectFromGitRemote = function (git) {

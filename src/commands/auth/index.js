@@ -8,12 +8,7 @@ const chalk = require('chalk')
 const fs = require('fs-extra')
 const path = require('path')
 const _ = require('lodash')
-const os = require('os')
-
-/**
- * Path to users ssh key
- */
-let sshKeyPath = helpers.getUserHome() + '/.ssh/id_rsa'
+const os = require('os') 
 
 class LoginCommand extends Command {
   async run() {
@@ -63,7 +58,7 @@ class LoginCommand extends Command {
    * so user's machine is recognised by git
    */
   async uploadKey() {
-    let key = helpers.getSSHKey(sshKeyPath)
+    let key = helpers.getSSHKey(this.config.home + '/.ssh/id_rsa')
 
     if (key === false) {
       this.warn('Could not find an existing public key')
@@ -98,8 +93,8 @@ class LoginCommand extends Command {
    * Generate a new key with ssh-keygen
    */
   generateKey() {
-    child.execSync('ssh-keygen -t rsa -f ' + sshKeyPath + " -q -N ''")
-    return helpers.getSSHKey(sshKeyPath)
+    child.execSync('ssh-keygen -t rsa -f ' + this.config.home + '/.ssh/id_rsa' + " -q -N ''")
+    return helpers.getSSHKey(this.config.home + '/.ssh/id_rsa')
   }
 }
 
