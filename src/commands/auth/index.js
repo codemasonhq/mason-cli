@@ -8,7 +8,7 @@ const chalk = require('chalk')
 const fs = require('fs-extra')
 const path = require('path')
 const _ = require('lodash')
-const os = require('os') 
+const os = require('os')
 
 class LoginCommand extends Command {
   async run() {
@@ -93,7 +93,7 @@ class LoginCommand extends Command {
    * Generate a new key with ssh-keygen
    */
   generateKey() {
-    child.execSync('ssh-keygen -t rsa -f ' + this.config.home + '/.ssh/id_rsa' + " -q -N ''")
+    child.execSync('ssh-keygen -t rsa -f ' + this.config.home + "/.ssh/id_rsa -q -N ''")
     return helpers.getSSHKey(this.config.home + '/.ssh/id_rsa')
   }
 }
