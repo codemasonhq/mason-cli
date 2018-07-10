@@ -22,8 +22,8 @@ class LogoutCommand extends Command {
   }
 
   /**
-     * Delete the SSH key for this user
-     */
+   * Delete the SSH key for this user
+   */
   async deleteKey() {
     return axios.delete(`${_.get(this.config, 'userConfig.endpoint')}/v1/git/keys?api_token=${_.get(this.config, 'userConfig.user.token')}`, {
       params: {
@@ -41,8 +41,8 @@ class LogoutCommand extends Command {
   }
 
   /**
-     * Remove user specific config
-     */
+   * Remove user specific config
+   */
   async clearPersistedData() {
     delete this.config.userConfig.user
     delete this.config.userConfig.team
