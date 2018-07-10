@@ -1,4 +1,4 @@
-const {Command} = require('../../base')
+const {Command, flags} = require('../../base')
 const {cli} = require('cli-ux')
 
 const helpers = require('../../util/helpers')
@@ -12,10 +12,12 @@ const os = require('os')
 
 class LoginCommand extends Command {
   async run() {
+    const {flags} = this.parse(LoginCommand)
+
     this.log('Login to your Codemason account')
 
-    const email = await cli.prompt('Email', {default: _.get(this.config, 'userConfig.user.email')})
-    const password = await cli.prompt('Password', {type: 'hide'})
+    const email = flags.email || await cli.prompt('Email', {default: _.get(this.config, 'userConfig.user.email')})
+    const password = flags.password || await cli.prompt('Password', {type: 'hide'})
 
     await this.authenticate(email, password).catch(e => {
       this.error(e)
@@ -102,10 +104,10 @@ LoginCommand.aliases = [
   'login',
 ]
 
-// LoginCommand.flags = {
-//   email: flags.string({char: 'e', description: 'email'}),
-//   password: flags.string({char: 'p', description: 'password'}),
-// }
+LoginCommand.flags = {
+  email: flags.string({char: 'e', description: 'email'}),
+  password: flags.string({char: 'p', description: 'password'}),
+}
 
 LoginCommand.description = 'login to your Codemason account'
 
