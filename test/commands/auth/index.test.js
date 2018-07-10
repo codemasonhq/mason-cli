@@ -23,7 +23,7 @@ describe('auth', () => {
   .post('/token', {
     email: 'email@example.com',
     password: 'secret123',
-    token_name: 'Mason CLI - Test',
+    token_name: 'Mason CLI - Test', // eslint-disable-line camelcase
   })
   .reply(200, {
     token: 'abc123',
@@ -32,7 +32,7 @@ describe('auth', () => {
     },
   })
   .post('/git/keys', {
-    api_token: 'abc123',
+    api_token: 'abc123', // eslint-disable-line camelcase
     title: 'Test.local',
     key: '1234567890',
   })
