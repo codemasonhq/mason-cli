@@ -29,7 +29,7 @@ describe('apps:deploy', () => {
   })
   .stub(helpers, 'getProjectFromGitRemote', 'test/pebble')
   .nock('http://localhost/v1/test', api => api
-  .post('/services?application=pebble&api_token=123', {
+  .post('/services?application=pebble&environment=development&api_token=123', {
     masonVersion: 'v1',
     type: 'service',
     name: 0,

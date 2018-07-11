@@ -13,7 +13,7 @@ describe('apps:create', () => {
   })
   .stub(helpers, 'createGitRemote', () => {})
   .nock('http://localhost/v1/test', api => api
-  .post('/applications?api_token=123')
+  .post('/applications?environment=development&api_token=123')
   .reply(200, {
     masonVersion: 'v1',
     type: 'application',

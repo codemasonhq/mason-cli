@@ -1,4 +1,4 @@
-const {Command} = require('../../base')
+const {Command, flags} = require('../../base')
 const {cli} = require('cli-ux')
 
 const helpers = require('../../util/helpers')
@@ -9,22 +9,23 @@ const _ = require('lodash')
 class AppsDestroyCommand extends Command {
   async run() {
     const {args} = this.parse(AppsDestroyCommand)
+    const {flags} = this.parse(AppsDestroyCommand)
 
     cli.action.start(`Destroying ${chalk.cyan(args.name)} (including all services)`)
 
-    await this.destroyApp(args.name).catch(e => {
+    await this.destroyApp(args.name, flags.environment).catch(e => {
       this.error(e)
     })
 
     cli.action.stop()
   }
 
-  async destroyApp(name) {
+  async destroyApp(name, environment) {
     var endpoint = _.get(this.config, 'userConfig.endpoint')
     var team = _.get(this.config, 'userConfig.team.slug')
     var token = _.get(this.config, 'userConfig.user.token')
 
-    return axios.delete(`${endpoint}/v1/${team}/applications/${name}?api_token=${token}`)
+    return axios.delete(`${endpoint}/v1/${team}/applications/${name}?environment=${environment}&api_token=${token}`)
     .then(response => {
       return _.get(response, 'data')
     })
@@ -44,6 +45,14 @@ AppsDestroyCommand.args = [
     required: true,
   },
 ]
+
+AppsDestroyCommand.flags = {
+  environment: flags.string({
+    char: 'e',
+    description: 'the environment of the app',
+    default: 'development',
+  }),
+}
 
 AppsDestroyCommand.description = 'permanently destroy an app'
 

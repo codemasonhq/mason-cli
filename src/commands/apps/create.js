@@ -11,7 +11,7 @@ class AppsCreateCommand extends Command {
 
     this.log('Creating app on Codemason...')
 
-    await this.createApp(args.name).catch(e => {
+    await this.createApp(args.name, flags.environment).catch(e => {
       this.error(e)
     })
 
@@ -22,12 +22,12 @@ class AppsCreateCommand extends Command {
     }
   }
 
-  async createApp(name) {
+  async createApp(name, environment) {
     var endpoint = _.get(this.config, 'userConfig.endpoint')
     var team = _.get(this.config, 'userConfig.team.slug')
     var token = _.get(this.config, 'userConfig.user.token')
 
-    return axios.post(`${endpoint}/v1/${team}/applications?api_token=${token}`, {
+    return axios.post(`${endpoint}/v1/${team}/applications?environment=${environment}&api_token=${token}`, {
       masonVersion: 'v1',
       type: 'application',
       name: name,
@@ -72,9 +72,20 @@ AppsCreateCommand.args = [
 ]
 
 AppsCreateCommand.flags = {
-  environment: flags.string({char: 'e', description: 'the environment to create the app in'}),
-  remote: flags.string({char: 'r', default: 'codemason', description: 'the git remote to create'}),
-  'no-remote': flags.boolean({char: 'n', description: 'do not add a git remote'}),
+  environment: flags.string({
+    char: 'e',
+    description: 'the environment to create the app in',
+    default: 'development',
+  }),
+  remote: flags.string({
+    char: 'r',
+    description: 'the git remote to create',
+    default: 'codemason',
+  }),
+  'no-remote': flags.boolean({
+    char: 'n',
+    description: 'do not add a git remote',
+  }),
 }
 
 AppsCreateCommand.description = 'create a new app'

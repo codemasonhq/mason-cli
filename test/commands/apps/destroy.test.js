@@ -11,7 +11,7 @@ describe('apps:destroy', () => {
     }
   })
   .nock('http://localhost/v1/test', api => api
-  .delete('/applications/pebble?api_token=123')
+  .delete('/applications/pebble?environment=development&api_token=123')
   .reply(200)
   )
   .stdout()

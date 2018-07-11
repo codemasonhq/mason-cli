@@ -25,7 +25,7 @@ class AppsDeployCommand extends Command {
     }
 
     // Deploy
-    const services = await this.deploy(args.name, masonJson).catch(e => {
+    const services = await this.deploy(args.name, flags.environment, masonJson).catch(e => {
       this.error(e)
     })
 
@@ -121,13 +121,13 @@ class AppsDeployCommand extends Command {
     })
   }
 
-  async deploy(name, masonJson) {
+  async deploy(name, environment, masonJson) {
     var endpoint = _.get(this.config, 'userConfig.endpoint')
     var team = _.get(this.config, 'userConfig.team.slug')
     var token = _.get(this.config, 'userConfig.user.token')
 
     const requests = _.map(masonJson, service => {
-      return axios.post(`${endpoint}/v1/${team}/services?application=${name}&api_token=${token}`, _.merge({
+      return axios.post(`${endpoint}/v1/${team}/services?application=${name}&environment=${environment}&api_token=${token}`, _.merge({
         masonVersion: 'v1',
         type: 'service',
       }, service))
@@ -173,7 +173,11 @@ AppsDeployCommand.flags = {
   'no-env-file': flags.boolean({
     exclusive: ['mason-json'],
   }),
-  environment: flags.string({char: 'e', description: 'the environment to deploy the app to'}),
+  environment: flags.string({
+    char: 'e',
+    description: 'the environment to deploy the app to',
+    default: 'development',
+  }),
 }
 
 AppsDeployCommand.description = 'create a new app'
