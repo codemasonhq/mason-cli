@@ -4,6 +4,7 @@ const {cli} = require('cli-ux')
 
 const helpers = require('../../util/helpers')
 const env = require('node-env-file')
+const fs = require('fs-extra')
 const axios = require('axios')
 const _ = require('lodash')
 
@@ -68,7 +69,7 @@ class ServicesUpgradeCommand extends Command {
 
     // Load the environment file
     let environment = {}
-    if (flags['env-file'] && helpers.fileExists(flags['env-file'])) {
+    if (flags['env-file'] && fs.existsSync(flags['env-file'])) {
       environment = env(flags['env-file'])
     }
 

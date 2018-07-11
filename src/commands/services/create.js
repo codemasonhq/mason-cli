@@ -5,6 +5,7 @@ const {cli} = require('cli-ux')
 const helpers = require('../../util/helpers')
 const env = require('node-env-file')
 const axios = require('axios')
+const fs = require('fs-extra')
 const _ = require('lodash')
 
 class ServicesCreateCommand extends Command {
@@ -45,7 +46,7 @@ class ServicesCreateCommand extends Command {
     var token = _.get(this.config, 'userConfig.user.token')
 
     // Load the environment file
-    if (flags['env-file'] && helpers.fileExists(flags['env-file'])) {
+    if (flags['env-file'] && fs.existsSync(flags['env-file'])) {
       environment = env(flags['env-file'])
     }
 

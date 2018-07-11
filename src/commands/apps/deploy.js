@@ -99,7 +99,7 @@ class AppsDeployCommand extends Command {
         service.image = _.get(this.config, 'userConfig.registry') + '/' + project.toLowerCase()
 
         // Load environment file, if available
-        if (!flags['no-env-file'] && helpers.fileExists(flags['env-file'])) {
+        if (!flags['no-env-file'] && fs.existsSync(flags['env-file'])) {
           service.environment = _.merge(service.environment, env(flags['env-file']))
         }
       }

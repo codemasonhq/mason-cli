@@ -1,8 +1,7 @@
 var _ = require('lodash')
-var fs = require('fs')
+var fs = require('fs-extra')
 var Table = require('cli-table')
 var child = require('child_process')
-var storage = require('node-persist')
 
 // var Analytics = require('analytics-node');
 
@@ -10,17 +9,6 @@ var storage = require('node-persist')
  * Set the analytics helper to track usage
  */
 // var analytics = exports.analytics = new Analytics('VpPJIWHX39N6iqKEiFP68XkAMpmXbAYT', { flushAt: 1, flushAfter: 1 });
-
-/**
- * Check to see if a file exists
- */
-exports.fileExists = function (filePath) {
-  try {
-    return fs.statSync(filePath).isFile()
-  } catch (err) {
-    return false
-  }
-}
 
 /**
  * Get the project from the git remote
@@ -39,7 +27,7 @@ exports.getProjectFromGitRemote = function (git) {
  * Get the SSH key
  */
 exports.getSSHKey = function (sshKeyPath) {
-  if (this.fileExists(sshKeyPath + '.pub')) {
+  if (fs.existsSync(sshKeyPath + '.pub')) {
     return fs.readFileSync(sshKeyPath + '.pub', 'utf8')
   }
   return false
@@ -92,29 +80,4 @@ exports.borderlessTable = function (paddingLeft, paddingRight) {
       right: '', 'right-mid': '', middle: ' '},
     style: {'padding-left': paddingLeft ? paddingLeft : 0, 'padding-right': paddingRight ? paddingRight : 0},
   })
-}
-
-exports.logError = function (error) {
-  var self = this
-
-  // Get debug info
-  var debug = error.debug
-  delete error.debug
-
-  // Output errors
-  _.each(error, function (error) {
-    self.log('     ↪  ' + error)
-  })
-
-  // Output debug info
-  if (debug && _.get(storage.getItem('config'), 'debug') === 'true') {
-    this.log('')
-    this.log('DEBUG > exception: ' + debug.exception)
-    this.log('DEBUG >      line: ' + debug.line)
-    this.log('DEBUG >      file: ' + debug.file)
-    this.log('DEBUG >     trace: ')
-    _.each(debug.trace, function (trace) {
-      this.log(trace)
-    })
-  }
 }
