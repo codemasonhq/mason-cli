@@ -13,7 +13,7 @@ describe('services:create', () => {
   })
   .stub(helpers, 'createGitRemote', () => {})
   .nock('http://localhost/v1/test', api => api
-  .post('/services?application=pebble&api_token=123')
+  .post('/services?application=pebble&environment=development&api_token=123')
   .reply(200, {
     masonVersion: 'v1',
     type: 'application',

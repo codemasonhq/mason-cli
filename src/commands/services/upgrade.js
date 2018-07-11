@@ -234,7 +234,7 @@ ServicesUpgradeCommand.flags = {
   }),
   environment: flags.string({
     char: 'e',
-    description: 'the environment the app is located in',
+    description: 'the environment the service is located in',
     default: 'development',
   }),
 }

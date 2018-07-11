@@ -78,7 +78,7 @@ class ServicesCreateCommand extends Command {
     }
 
     // Create the service
-    return axios.post(`${endpoint}/v1/${team}/services?application=${app}&api_token=${token}`, masonJson)
+    return axios.post(`${endpoint}/v1/${team}/services?application=${app}&environment=${flags.environment}&api_token=${token}`, masonJson)
     .then(response => {
       return _.merge(response.data, {masonJson: masonJson})
     })
@@ -108,6 +108,11 @@ ServicesCreateCommand.args = [
 ]
 
 ServicesCreateCommand.flags = {
+  environment: flags.string({
+    char: 'e',
+    description: 'the environment to access',
+    default: 'development',
+  }),
   image: flags.string({
     char: 'i',
     description: 'image for service to run',

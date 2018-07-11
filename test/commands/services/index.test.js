@@ -11,7 +11,7 @@ describe('services', () => {
     }
   })
   .nock('http://localhost/v1/test', api => api
-  .get('/services?api_token=123')
+  .get('/services?environment=development&api_token=123')
   .reply(200, [{name: 'hello-world'}])
   )
   .stdout()
