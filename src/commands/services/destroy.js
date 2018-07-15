@@ -66,7 +66,7 @@ ServiceDestroyCommand.args = [
     parse: (input => { // validate service arg is formatted correctly
       var parts = input.split('/')
       if (parts.length !== 2) {
-        throw new CLIError('Invalid format for service arg')
+        throw new CLIError('Invalid format for service arg, requires `<app>/<service>` format')
       }
       return parts
     }),
