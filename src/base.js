@@ -1,6 +1,7 @@
 const {Command, flags} = require('@oclif/command')
 const fs = require('fs-extra')
 const path = require('path')
+const _ = require('lodash')
 
 let defaultConfig = {
   endpoint: 'https://codemason.io',
@@ -12,7 +13,7 @@ let defaultConfig = {
 class BaseCommand extends Command {
   async init() {
     try {
-      this.config.userConfig = await fs.readJSON(path.join(this.config.configDir, 'config.json'))
+      this.config.userConfig = _.merge(defaultConfig, fs.readJsonSync(path.join(this.config.configDir, 'config.json')))
     } catch (err) {
       if (err.code !== 'ENOENT') throw err
       this.config.userConfig = defaultConfig
