@@ -14,7 +14,7 @@ $ npm install -g codemason
 $ mason COMMAND
 running command...
 $ mason (-v|--version|version)
-codemason/1.0.0 darwin-x64 node-v9.8.0
+codemason/1.0.1 darwin-x64 node-v9.8.0
 $ mason --help [COMMAND]
 USAGE
   $ mason COMMAND
@@ -62,7 +62,7 @@ OPTIONS
   -e, --environment=environment  [default: development] the environment of apps to list
 ```
 
-_See code: [src/commands/apps.js](https://github.com/codemasonhq/mason-cli/blob/v1.0.0/src/commands/apps.js)_
+_See code: [src/commands/apps.js](https://github.com/codemasonhq/mason-cli/blob/v1.0.1/src/commands/apps.js)_
 
 ## `mason apps:create NAME`
 
@@ -81,7 +81,7 @@ ALIASES
   $ mason create
 ```
 
-_See code: [src/commands/apps/create.js](https://github.com/codemasonhq/mason-cli/blob/v1.0.0/src/commands/apps/create.js)_
+_See code: [src/commands/apps/create.js](https://github.com/codemasonhq/mason-cli/blob/v1.0.1/src/commands/apps/create.js)_
 
 ## `mason apps:deploy NAME`
 
@@ -102,7 +102,7 @@ ALIASES
   $ mason deploy
 ```
 
-_See code: [src/commands/apps/deploy.js](https://github.com/codemasonhq/mason-cli/blob/v1.0.0/src/commands/apps/deploy.js)_
+_See code: [src/commands/apps/deploy.js](https://github.com/codemasonhq/mason-cli/blob/v1.0.1/src/commands/apps/deploy.js)_
 
 ## `mason apps:destroy NAME`
 
@@ -116,7 +116,7 @@ OPTIONS
   -e, --environment=environment  [default: development] the environment of the app
 ```
 
-_See code: [src/commands/apps/destroy.js](https://github.com/codemasonhq/mason-cli/blob/v1.0.0/src/commands/apps/destroy.js)_
+_See code: [src/commands/apps/destroy.js](https://github.com/codemasonhq/mason-cli/blob/v1.0.1/src/commands/apps/destroy.js)_
 
 ## `mason auth`
 
@@ -134,7 +134,7 @@ ALIASES
   $ mason login
 ```
 
-_See code: [src/commands/auth.js](https://github.com/codemasonhq/mason-cli/blob/v1.0.0/src/commands/auth.js)_
+_See code: [src/commands/auth.js](https://github.com/codemasonhq/mason-cli/blob/v1.0.1/src/commands/auth.js)_
 
 ## `mason auth:logout`
 
@@ -148,7 +148,7 @@ ALIASES
   $ mason logout
 ```
 
-_See code: [src/commands/auth/logout.js](https://github.com/codemasonhq/mason-cli/blob/v1.0.0/src/commands/auth/logout.js)_
+_See code: [src/commands/auth/logout.js](https://github.com/codemasonhq/mason-cli/blob/v1.0.1/src/commands/auth/logout.js)_
 
 ## `mason auth:token`
 
@@ -162,7 +162,7 @@ ALIASES
   $ mason token
 ```
 
-_See code: [src/commands/auth/token.js](https://github.com/codemasonhq/mason-cli/blob/v1.0.0/src/commands/auth/token.js)_
+_See code: [src/commands/auth/token.js](https://github.com/codemasonhq/mason-cli/blob/v1.0.1/src/commands/auth/token.js)_
 
 ## `mason auth:whoami`
 
@@ -176,7 +176,7 @@ ALIASES
   $ mason whoami
 ```
 
-_See code: [src/commands/auth/whoami.js](https://github.com/codemasonhq/mason-cli/blob/v1.0.0/src/commands/auth/whoami.js)_
+_See code: [src/commands/auth/whoami.js](https://github.com/codemasonhq/mason-cli/blob/v1.0.1/src/commands/auth/whoami.js)_
 
 ## `mason config`
 
@@ -187,7 +187,7 @@ USAGE
   $ mason config
 ```
 
-_See code: [src/commands/config.js](https://github.com/codemasonhq/mason-cli/blob/v1.0.0/src/commands/config.js)_
+_See code: [src/commands/config.js](https://github.com/codemasonhq/mason-cli/blob/v1.0.1/src/commands/config.js)_
 
 ## `mason config:get KEY`
 
@@ -198,7 +198,7 @@ USAGE
   $ mason config:get KEY
 ```
 
-_See code: [src/commands/config/get.js](https://github.com/codemasonhq/mason-cli/blob/v1.0.0/src/commands/config/get.js)_
+_See code: [src/commands/config/get.js](https://github.com/codemasonhq/mason-cli/blob/v1.0.1/src/commands/config/get.js)_
 
 ## `mason config:set KEY VALUE`
 
@@ -209,7 +209,7 @@ USAGE
   $ mason config:set KEY VALUE
 ```
 
-_See code: [src/commands/config/set.js](https://github.com/codemasonhq/mason-cli/blob/v1.0.0/src/commands/config/set.js)_
+_See code: [src/commands/config/set.js](https://github.com/codemasonhq/mason-cli/blob/v1.0.1/src/commands/config/set.js)_
 
 ## `mason config:unset KEY`
 
@@ -220,7 +220,7 @@ USAGE
   $ mason config:unset KEY
 ```
 
-_See code: [src/commands/config/unset.js](https://github.com/codemasonhq/mason-cli/blob/v1.0.0/src/commands/config/unset.js)_
+_See code: [src/commands/config/unset.js](https://github.com/codemasonhq/mason-cli/blob/v1.0.1/src/commands/config/unset.js)_
 
 ## `mason craft KIT`
 
@@ -254,7 +254,7 @@ OPTIONS
   -r, --remote=remote  name to give git remote
 ```
 
-_See code: [src/commands/git/remote.js](https://github.com/codemasonhq/mason-cli/blob/v1.0.0/src/commands/git/remote.js)_
+_See code: [src/commands/git/remote.js](https://github.com/codemasonhq/mason-cli/blob/v1.0.1/src/commands/git/remote.js)_
 
 ## `mason help [COMMAND]`
 
@@ -405,7 +405,7 @@ OPTIONS
   -e, --environment=environment  [default: development] the environment of services to list
 ```
 
-_See code: [src/commands/services.js](https://github.com/codemasonhq/mason-cli/blob/v1.0.0/src/commands/services.js)_
+_See code: [src/commands/services.js](https://github.com/codemasonhq/mason-cli/blob/v1.0.1/src/commands/services.js)_
 
 ## `mason services:create SERVICE`
 
@@ -429,7 +429,7 @@ OPTIONS
   --env-file=env-file            path to env file to load
 ```
 
-_See code: [src/commands/services/create.js](https://github.com/codemasonhq/mason-cli/blob/v1.0.0/src/commands/services/create.js)_
+_See code: [src/commands/services/create.js](https://github.com/codemasonhq/mason-cli/blob/v1.0.1/src/commands/services/create.js)_
 
 ## `mason services:destroy SERVICE`
 
@@ -446,7 +446,7 @@ OPTIONS
   -e, --environment=environment  [default: development] the environment the app is located in
 ```
 
-_See code: [src/commands/services/destroy.js](https://github.com/codemasonhq/mason-cli/blob/v1.0.0/src/commands/services/destroy.js)_
+_See code: [src/commands/services/destroy.js](https://github.com/codemasonhq/mason-cli/blob/v1.0.1/src/commands/services/destroy.js)_
 
 ## `mason services:upgrade SERVICE`
 
@@ -474,7 +474,7 @@ OPTIONS
   --rollback                     rollback an upgrade
 ```
 
-_See code: [src/commands/services/upgrade.js](https://github.com/codemasonhq/mason-cli/blob/v1.0.0/src/commands/services/upgrade.js)_
+_See code: [src/commands/services/upgrade.js](https://github.com/codemasonhq/mason-cli/blob/v1.0.1/src/commands/services/upgrade.js)_
 
 ## `mason update [CHANNEL]`
 
