@@ -5,7 +5,7 @@ describe('auth:whoami', () => {
   test
   .stdout()
   .stderr()
-  .stub(fs, 'readJSON', () => {
+  .stub(fs, 'readJsonSync', () => {
     return {
       user: {name: 'Foo Bar', email: 'foo@bar.com'},
     }

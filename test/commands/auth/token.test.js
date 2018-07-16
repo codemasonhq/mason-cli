@@ -5,7 +5,7 @@ describe('auth:token', () => {
   test
   .stdout()
   .stderr()
-  .stub(fs, 'readJSON', () => {
+  .stub(fs, 'readJsonSync', () => {
     return {}
   })
   .command(['auth:token'])
@@ -16,7 +16,7 @@ describe('auth:token', () => {
   test
   .stdout()
   .stderr()
-  .stub(fs, 'readJSON', () => {
+  .stub(fs, 'readJsonSync', () => {
     return {user: {token: '123456'}}
   })
   .command(['auth:token'])

@@ -9,7 +9,7 @@ describe('auth:logout', () => {
   .stderr()
   .stub(helpers, 'getSSHKey', () => '1234567890')
   .stub(os, 'hostname', () => 'Test.local')
-  .stub(fs, 'readJSON', () => {
+  .stub(fs, 'readJsonSync', () => {
     return {
       endpoint: 'http://localhost',
       user: {token: 'abc123', email: 'email@example.com'},

@@ -5,7 +5,7 @@ describe('config', () => {
   test
   .stdout()
   .stderr()
-  .stub(fs, 'readJSON', () => {
+  .stub(fs, 'readJsonSync', () => {
     return {hello: 'world'}
   })
   .command('config')

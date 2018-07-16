@@ -3,7 +3,7 @@ const fs = require('fs-extra')
 
 describe('services:destroy', () => {
   test
-  .stub(fs, 'readJSON', () => {
+  .stub(fs, 'readJsonSync', () => {
     return {
       endpoint: 'http://localhost',
       team: {slug: 'test'},

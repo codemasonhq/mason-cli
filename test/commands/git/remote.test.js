@@ -6,7 +6,7 @@ describe('git:remote', () => {
   test
   .stdout()
   .stderr()
-  .stub(fs, 'readJSON', () => {
+  .stub(fs, 'readJsonSync', () => {
     return {
       git: 'git.mason.ci',
       remote: 'codemason',

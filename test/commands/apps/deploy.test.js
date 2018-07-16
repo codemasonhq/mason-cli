@@ -18,7 +18,7 @@ describe('apps:deploy', () => {
       ],
     }
   })
-  .stub(fs, 'readJSON', () => {
+  .stub(fs, 'readJsonSync', () => {
     return {
       git: 'git.mason.ci',
       registry: 'registry.mason.ci',

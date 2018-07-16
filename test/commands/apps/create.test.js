@@ -4,7 +4,7 @@ const fs = require('fs-extra')
 
 describe('apps:create', () => {
   test
-  .stub(fs, 'readJSON', () => {
+  .stub(fs, 'readJsonSync', () => {
     return {
       endpoint: 'http://localhost',
       team: {slug: 'test'},

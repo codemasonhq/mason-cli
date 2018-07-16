@@ -5,7 +5,7 @@ describe('config:unset', () => {
   test
   .stdout()
   .stderr()
-  .stub(fs, 'readJSON', () => {
+  .stub(fs, 'readJsonSync', () => {
     return {
       foo: 'bar',
     }
