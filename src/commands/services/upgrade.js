@@ -138,7 +138,7 @@ class ServicesUpgradeCommand extends Command {
     var team = _.get(this.config, 'userConfig.team.slug')
     var token = _.get(this.config, 'userConfig.user.token')
 
-    return axios.get(`${endpoint}/v1/${team}/services/${app}/${name}?api_token=${token}`)
+    return axios.get(`${endpoint}/v1/${team}/services/${app}/${name}?environment=${this.environment}&api_token=${token}`)
     .then(response => {
       return response.data
     })

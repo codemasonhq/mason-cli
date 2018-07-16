@@ -13,7 +13,7 @@ describe('services:upgrade', () => {
   })
   .stub(helpers, 'createGitRemote', () => {})
   .nock('http://localhost/v1/test', api => api
-  .get('/services/pebble/web?api_token=123')
+  .get('/services/pebble/web?environment=development&api_token=123')
   .reply(200, {id: 1, name: 'web'})
   .put('/services/1?environment=development&api_token=123', {
     masonVersion: 'v1',
