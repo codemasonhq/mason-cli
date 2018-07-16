@@ -146,6 +146,10 @@ class AppsDeployCommand extends Command {
   }
 }
 
+AppsDeployCommand.aliases = [
+  'deploy',
+]
+
 AppsDeployCommand.args = [
   {
     name: 'name',
@@ -180,6 +184,6 @@ AppsDeployCommand.flags = {
   }),
 }
 
-AppsDeployCommand.description = 'create a new app'
+AppsDeployCommand.description = 'deploy an app'
 
 module.exports = AppsDeployCommand
