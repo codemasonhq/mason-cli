@@ -39,11 +39,11 @@ class LoginCommand extends Command {
       password: password,
       token_name: 'Mason CLI - ' + os.hostname().split('.').shift(), // eslint-disable-line camelcase
     })
-    .then(async response => {
+    .then(response => {
       this.config.userConfig.user = _.get(response, 'data.user', {})
       _.merge(this.config.userConfig.user, _.pick(_.get(response, 'data', {}), 'token'))
       this.config.userConfig.team = _.pick(_.get(response, 'data.team', {}), ['slug', 'current_billing_plan'])
-      await fs.outputJSON(path.join(this.config.configDir, 'config.json'), this.config.userConfig, {spaces: 2})
+      fs.outputJsonSync(path.join(this.config.configDir, 'config.json'), this.config.userConfig, {spaces: 2})
       return _.get(response, 'data.token')
     })
     .catch(error => {

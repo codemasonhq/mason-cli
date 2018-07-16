@@ -9,13 +9,13 @@ describe('auth', () => {
   .stderr()
   .stub(helpers, 'getSSHKey', () => '1234567890')
   .stub(os, 'hostname', () => 'Test.local')
-  .stub(fs, 'readJSON', () => {
+  .stub(fs, 'readJsonSync', () => {
     return {
       endpoint: 'http://localhost',
-      user: {email: 'email@example.com'},
+      user: {email: 'email@example.com', token: null},
     }
   })
-  .stub(fs, 'outputJSON', (path, json) => {
+  .stub(fs, 'outputJsonSync', (path, json) => {
     expect(json).to.have.property('user')
     expect(json.user.email).to.equal('email@example.com')
   })
