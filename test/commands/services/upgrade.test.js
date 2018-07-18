@@ -27,6 +27,8 @@ describe('services:upgrade', () => {
       'io.rancher.container.pull_image': 'always',
     },
     ports: ['80'],
+    volumes: [],
+    links: [],
   })
   .reply(200)
   )
