@@ -88,16 +88,22 @@ class ServicesUpgradeCommand extends Command {
       environment[envKey] = envValue
     })
 
+    // Load default values from service
+    let defaultEnvironment = _.get(service, 'rancher.launchConfig.environment')
+    let defaultPorts = _.get(service, 'rancher.launchConfig.ports')
+    let defaultVolumes = _.get(service, 'rancher.launchConfig.dataVolumes')
+    let defaultLinks = _.get(service, 'rancher.parsedLinks')
+
     const masonJson = {
       masonVersion: 'v1',
       type: 'service',
       name: name,
       image: image,
       command: _.get(flags, 'command'),
-      environment: environment,
-      ports: _.get(flags, 'port'),
-      volumes: _.get(flags, 'volume'),
-      links: _.get(flags, 'link'),
+      environment: _.merge(defaultEnvironment, environment),
+      ports: _.union(defaultPorts, _.get(flags, 'port')),
+      volumes: _.union(defaultVolumes, _.get(flags, 'volume')),
+      links: _.union(defaultLinks, _.get(flags, 'link')),
       labels: {
         'io.rancher.container.pull_image': 'always',
       },
