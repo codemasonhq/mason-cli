@@ -22,8 +22,10 @@ describe('helpers', () => {
   test
   .do(() => {
     var formattedError = helpers.parseApiError({
-      name: ['The name field is required.'],
-      masonVersion: ['The mason version field is required.'],
+      errors: {
+        name: ['The name field is required.'],
+        masonVersion: ['The mason version field is required.'],
+      },
     })
     expect(formattedError).to.contains('The name field is required.')
     expect(formattedError).to.contains('The mason version field is required.')

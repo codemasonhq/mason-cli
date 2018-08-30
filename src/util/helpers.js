@@ -66,7 +66,7 @@ exports.createGitRemote = function (git, team, name, remote) {
  * Parse the errors returned by the API into a standard format
  */
 exports.parseApiError = function (error) {
-  return _.join(_.flatten(_.toArray(error)), '\n' + ' '.repeat('Error:'.length))
+  return _.join(_.flatten(_.toArray(_.get(error, 'errors', [error.message]))), '\n' + ' '.repeat('Error:'.length))
 }
 
 /**
