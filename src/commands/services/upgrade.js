@@ -89,6 +89,7 @@ class ServicesUpgradeCommand extends Command {
     })
 
     // Load default values from service
+    let defaultCommand = _.join(_.get(service, 'rancher.launchConfig.command', []), ' ')
     let defaultEnvironment = _.get(service, 'rancher.launchConfig.environment')
     let defaultPorts = _.get(service, 'rancher.launchConfig.ports')
     let defaultVolumes = _.get(service, 'rancher.launchConfig.dataVolumes')
@@ -99,7 +100,7 @@ class ServicesUpgradeCommand extends Command {
       type: 'service',
       name: name,
       image: image,
-      command: _.get(flags, 'command'),
+      command: _.get(flags, 'command') || defaultCommand,
       environment: _.merge(defaultEnvironment, environment),
       ports: _.union(defaultPorts, _.get(flags, 'port')),
       volumes: _.union(defaultVolumes, _.get(flags, 'volume')),
