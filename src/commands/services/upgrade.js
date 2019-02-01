@@ -5,7 +5,6 @@ const {cli} = require('cli-ux')
 const helpers = require('../../util/helpers')
 const env = require('node-env-file')
 const fs = require('fs-extra')
-const axios = require('axios')
 const _ = require('lodash')
 
 class ServicesUpgradeCommand extends Command {
@@ -16,9 +15,7 @@ class ServicesUpgradeCommand extends Command {
     var app = _.first(args.service)
     var name = _.last(args.service)
 
-    this.endpoint = _.get(this.config, 'userConfig.endpoint')
     this.team = _.get(this.config, 'userConfig.team.slug')
-    this.token = _.get(this.config, 'userConfig.user.token')
     this.environment = flags.environment
 
     if (flags.finish) {
@@ -111,7 +108,7 @@ class ServicesUpgradeCommand extends Command {
     }
 
     // Upgrade the service
-    return axios.put(`${this.endpoint}/v1/${this.team}/services/${service.id}?environment=${this.environment}&api_token=${this.token}`, masonJson)
+    return this.codemason.put(`/${this.team}/services/${service.id}?environment=${this.environment}`, masonJson)
     .then(response => {
       return response.data
     })
@@ -141,11 +138,8 @@ class ServicesUpgradeCommand extends Command {
   }
 
   async getService(app, name) {
-    var endpoint = _.get(this.config, 'userConfig.endpoint')
     var team = _.get(this.config, 'userConfig.team.slug')
-    var token = _.get(this.config, 'userConfig.user.token')
-
-    return axios.get(`${endpoint}/v1/${team}/services/${app}/${name}?environment=${this.environment}&api_token=${token}`)
+    return this.codemason.get(`/${team}/services/${app}/${name}?environment=${this.environment}`)
     .then(response => {
       return response.data
     })
@@ -163,7 +157,7 @@ class ServicesUpgradeCommand extends Command {
       this.error(e)
     })
 
-    return axios.post(`${this.endpoint}/v1/${this.team}/services/${service.id}/${route}?environment=${this.environment}&api_token=${this.token}`)
+    return this.codemason.post(`/${this.team}/services/${service.id}/${route}?environment=${this.environment}`)
     .then(response => {
       return response.data
     })

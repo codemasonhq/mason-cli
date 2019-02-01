@@ -3,7 +3,6 @@ const {cli} = require('cli-ux')
 
 const helpers = require('../../util/helpers')
 const env = require('node-env-file')
-const axios = require('axios')
 const chalk = require('chalk')
 const YAML = require('yamljs')
 const fs = require('fs-extra')
@@ -122,12 +121,9 @@ class AppsDeployCommand extends Command {
   }
 
   async deploy(name, environment, masonJson) {
-    var endpoint = _.get(this.config, 'userConfig.endpoint')
     var team = _.get(this.config, 'userConfig.team.slug')
-    var token = _.get(this.config, 'userConfig.user.token')
-
     const requests = _.map(masonJson, service => {
-      return axios.post(`${endpoint}/v1/${team}/services?application=${name}&environment=${environment}&api_token=${token}`, _.merge({
+      return this.codemason.post(`/${team}/services?application=${name}&environment=${environment}`, _.merge({
         masonVersion: 'v1',
         type: 'service',
       }, service))

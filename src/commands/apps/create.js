@@ -1,6 +1,5 @@
 const {Command, flags} = require('../../base')
 const helpers = require('../../util/helpers')
-const axios = require('axios')
 const chalk = require('chalk')
 const _ = require('lodash')
 
@@ -23,11 +22,8 @@ class AppsCreateCommand extends Command {
   }
 
   async createApp(name, environment) {
-    var endpoint = _.get(this.config, 'userConfig.endpoint')
     var team = _.get(this.config, 'userConfig.team.slug')
-    var token = _.get(this.config, 'userConfig.user.token')
-
-    return axios.post(`${endpoint}/v1/${team}/applications?environment=${environment}&api_token=${token}`, {
+    return this.codemason.post(`/${team}/applications?environment=${environment}`, {
       masonVersion: 'v1',
       type: 'application',
       name: name,

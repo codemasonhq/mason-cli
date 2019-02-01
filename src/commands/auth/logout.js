@@ -2,7 +2,6 @@ const {Command} = require('../../base')
 const {cli} = require('cli-ux')
 
 const helpers = require('../../util/helpers')
-const axios = require('axios')
 const fs = require('fs-extra')
 const path = require('path')
 const _ = require('lodash')
@@ -25,7 +24,7 @@ class LogoutCommand extends Command {
    * Delete the SSH key for this user
    */
   async deleteKey() {
-    return axios.delete(`${_.get(this.config, 'userConfig.endpoint')}/v1/git/keys?api_token=${_.get(this.config, 'userConfig.user.token')}`, {
+    return this.codemason.delete('/git/keys', {
       params: {
         title: os.hostname(),
         key: helpers.getSSHKey(this.config.home + '/.ssh/id_rsa').toString(),

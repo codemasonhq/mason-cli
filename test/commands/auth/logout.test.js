@@ -19,10 +19,12 @@ describe('auth:logout', () => {
     expect(json).to.have.property('endpoint')
     expect(json.endpoint).to.equal('http://localhost')
   })
-  .nock('http://localhost/v1', api => api
-  .delete('/git/keys?api_token=abc123&title=Test.local&key=1234567890')
-  .reply(200)
-  )
+  .nock('http://localhost/v1', api => {
+    api.reqHeaders = {authorization: 'Bearer abc123'}
+    return api
+    .delete('/git/keys?title=Test.local&key=1234567890')
+    .reply(200)
+  })
   .command(['auth:logout'])
   .it('successful logout', ctx => {
     expect(ctx.stdout).to.equal('')

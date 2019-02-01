@@ -10,10 +10,12 @@ describe('services', () => {
       user: {token: '123'},
     }
   })
-  .nock('http://localhost/v1/test', api => api
-  .get('/services?environment=development&api_token=123')
-  .reply(200, [{name: 'hello-world'}])
-  )
+  .nock('http://localhost/v1/test', api => {
+    api.reqHeaders = {authorization: 'Bearer 123'}
+    return api
+    .get('/services?environment=development')
+    .reply(200, [{name: 'hello-world'}])
+  })
   .stdout()
   .stderr()
   .command(['services'])

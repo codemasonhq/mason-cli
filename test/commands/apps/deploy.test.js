@@ -28,23 +28,25 @@ describe('apps:deploy', () => {
     }
   })
   .stub(helpers, 'getProjectFromGitRemote', 'test/pebble')
-  .nock('http://localhost/v1/test', api => api
-  .post('/services?application=pebble&environment=development&api_token=123', {
-    masonVersion: 'v1',
-    type: 'service',
-    name: 0,
-    image: 'registry.mason.ci/pebble/web',
-    environment: {
-      FOO: 'bar',
-    },
-    volumes: [],
+  .nock('http://localhost/v1/test', api => {
+    api.reqHeaders = {authorization: 'Bearer 123'}
+    return api
+    .post('/services?application=pebble&environment=development', {
+      masonVersion: 'v1',
+      type: 'service',
+      name: 0,
+      image: 'registry.mason.ci/pebble/web',
+      environment: {
+        FOO: 'bar',
+      },
+      volumes: [],
+    })
+    .reply(200, {
+      masonVersion: 'v1',
+      type: 'application',
+      name: 'pebble',
+    })
   })
-  .reply(200, {
-    masonVersion: 'v1',
-    type: 'application',
-    name: 'pebble',
-  })
-  )
   .stdout()
   .stderr()
   .command(['apps:deploy', 'pebble'])

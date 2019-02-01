@@ -3,7 +3,6 @@ const {cli} = require('cli-ux')
 
 const helpers = require('../../util/helpers')
 const child = require('child_process')
-const axios = require('axios')
 const chalk = require('chalk')
 const fs = require('fs-extra')
 const path = require('path')
@@ -34,7 +33,7 @@ class LoginCommand extends Command {
    * Authenticate the user and store get a JWT token
    */
   async authenticate(email, password) {
-    return axios.post(`${_.get(this.config, 'userConfig.endpoint')}/v1/token`, {
+    return this.codemason.post('/token', {
       email: email,
       password: password,
       token_name: 'Mason CLI - ' + os.hostname().split('.').shift(), // eslint-disable-line camelcase
@@ -68,17 +67,18 @@ class LoginCommand extends Command {
       key = this.generateKey()
     }
 
-    return axios.post(`${_.get(this.config, 'userConfig.endpoint')}/v1/git/keys`, {
-      api_token: _.get(this.config, 'userConfig.user.token'), // eslint-disable-line camelcase
+    return this.codemason.post('/git/keys', {
       title: os.hostname(),
       key: key,
+    }, {
+      headers: {Authorization: 'Bearer ' + _.get(this.config, 'userConfig.user.token')},
     })
     .then(response => {
       return _.get(response, 'data.token')
     })
     .catch(error => {
       // Don't alert the user if the key has already been added
-      if (_.flatten(_.toArray(_.get(error, 'response.data'))).indexOf('"fingerprint" has already been taken') !== -1) {
+      if (_.flatten(_.toArray(_.get(error, 'response.data.errors'))).indexOf('"fingerprint" has already been taken') !== -1) {
         return
       }
 

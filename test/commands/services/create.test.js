@@ -12,19 +12,21 @@ describe('services:create', () => {
     }
   })
   .stub(helpers, 'createGitRemote', () => {})
-  .nock('http://localhost/v1/test', api => api
-  .post('/services?application=pebble&environment=development&api_token=123')
-  .reply(200, {
-    masonVersion: 'v1',
-    type: 'application',
-    name: 'web',
-    image: 'registry.mason.ci/pebble/web',
-    environment: {
-      FOO: 'BAR',
-    },
-    ports: ['80'],
+  .nock('http://localhost/v1/test', api => {
+    api.reqHeaders = {authorization: 'Bearer 123'}
+    return api
+    .post('/services?application=pebble&environment=development')
+    .reply(200, {
+      masonVersion: 'v1',
+      type: 'application',
+      name: 'web',
+      image: 'registry.mason.ci/pebble/web',
+      environment: {
+        FOO: 'BAR',
+      },
+      ports: ['80'],
+    })
   })
-  )
   .stdout()
   .stderr()
   .command(['services:create', 'pebble/web', '-p', '80', '--env', 'FOO=BAR', '--image', 'registry.mason.ci/pebble/web'])

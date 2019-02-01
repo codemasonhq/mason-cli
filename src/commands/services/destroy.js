@@ -3,7 +3,6 @@ const {CLIError} = require('@oclif/errors')
 const {cli} = require('cli-ux')
 
 const helpers = require('../../util/helpers')
-const axios = require('axios')
 const chalk = require('chalk')
 const _ = require('lodash')
 
@@ -15,9 +14,7 @@ class ServiceDestroyCommand extends Command {
     var app = _.first(args.service)
     var name = _.last(args.service)
 
-    this.endpoint = _.get(this.config, 'userConfig.endpoint')
     this.team = _.get(this.config, 'userConfig.team.slug')
-    this.token = _.get(this.config, 'userConfig.user.token')
     this.environment = flags.environment
 
     cli.action.start(`Destroying ${chalk.red(name)} service in ${chalk.cyan(app)}`)
@@ -30,7 +27,7 @@ class ServiceDestroyCommand extends Command {
       this.error(e)
     })
 
-    return axios.delete(`${this.endpoint}/v1/${this.team}/services/${service.id}?environment=${this.environment}&api_token=${this.token}`)
+    return this.codemason.delete(`/${this.team}/services/${service.id}?environment=${this.environment}`)
     .then(response => {
       return _.get(response, 'data')
     })
@@ -44,7 +41,7 @@ class ServiceDestroyCommand extends Command {
   }
 
   async getService(app, name) {
-    return axios.get(`${this.endpoint}/v1/${this.team}/services/${app}/${name}?environment=${this.environment}&api_token=${this.token}`)
+    return this.codemason.get(`/${this.team}/services/${app}/${name}?environment=${this.environment}`)
     .then(response => {
       return response.data
     })

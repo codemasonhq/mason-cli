@@ -2,7 +2,6 @@ const {Command, flags} = require('../../base')
 const {cli} = require('cli-ux')
 
 const helpers = require('../../util/helpers')
-const axios = require('axios')
 const chalk = require('chalk')
 const _ = require('lodash')
 
@@ -21,11 +20,8 @@ class AppsDestroyCommand extends Command {
   }
 
   async destroyApp(name, environment) {
-    var endpoint = _.get(this.config, 'userConfig.endpoint')
     var team = _.get(this.config, 'userConfig.team.slug')
-    var token = _.get(this.config, 'userConfig.user.token')
-
-    return axios.delete(`${endpoint}/v1/${team}/applications/${name}?environment=${environment}&api_token=${token}`)
+    return this.codemason.delete(`/${team}/applications/${name}?environment=${environment}`)
     .then(response => {
       return _.get(response, 'data')
     })

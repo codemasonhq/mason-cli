@@ -1,6 +1,5 @@
 const {Command, flags} = require('../../base')
 const helpers = require('../../util/helpers')
-const axios = require('axios')
 const chalk = require('chalk')
 const _ = require('lodash')
 
@@ -18,11 +17,8 @@ class AppsIndexCommand extends Command {
   }
 
   async getApps(environment) {
-    var endpoint = _.get(this.config, 'userConfig.endpoint')
     var team = _.get(this.config, 'userConfig.team.slug')
-    var token = _.get(this.config, 'userConfig.user.token')
-
-    return axios.get(`${endpoint}/v1/${team}/applications?environment=${environment}&api_token=${token}`)
+    return this.codemason.get(`/${team}/applications?environment=${environment}`)
     .then(response => {
       return _.get(response, 'data')
     })

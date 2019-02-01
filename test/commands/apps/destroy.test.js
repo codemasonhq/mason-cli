@@ -10,10 +10,12 @@ describe('apps:destroy', () => {
       user: {token: '123'},
     }
   })
-  .nock('http://localhost/v1/test', api => api
-  .delete('/applications/pebble?environment=development&api_token=123')
-  .reply(200)
-  )
+  .nock('http://localhost/v1/test', api => {
+    api.reqHeaders = {authorization: 'Bearer 123'}
+    return api
+    .delete('/applications/pebble?environment=development')
+    .reply(200)
+  })
   .stdout()
   .stderr()
   .command(['apps:destroy', 'pebble'])

@@ -4,7 +4,6 @@ const {cli} = require('cli-ux')
 
 const helpers = require('../../util/helpers')
 const env = require('node-env-file')
-const axios = require('axios')
 const fs = require('fs-extra')
 const _ = require('lodash')
 
@@ -41,9 +40,7 @@ class ServicesCreateCommand extends Command {
     const {flags} = this.parse(ServicesCreateCommand)
 
     var environment = {}
-    var endpoint = _.get(this.config, 'userConfig.endpoint')
     var team = _.get(this.config, 'userConfig.team.slug')
-    var token = _.get(this.config, 'userConfig.user.token')
 
     // Load the environment file
     if (flags['env-file'] && fs.existsSync(flags['env-file'])) {
@@ -78,7 +75,7 @@ class ServicesCreateCommand extends Command {
     }
 
     // Create the service
-    return axios.post(`${endpoint}/v1/${team}/services?application=${app}&environment=${flags.environment}&api_token=${token}`, masonJson)
+    return this.codemason.post(`/${team}/services?application=${app}&environment=${flags.environment}`, masonJson)
     .then(response => {
       return _.merge(response.data, {masonJson: masonJson})
     })

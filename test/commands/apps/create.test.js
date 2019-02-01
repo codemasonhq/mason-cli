@@ -12,14 +12,16 @@ describe('apps:create', () => {
     }
   })
   .stub(helpers, 'createGitRemote', () => {})
-  .nock('http://localhost/v1/test', api => api
-  .post('/applications?environment=development&api_token=123')
-  .reply(200, {
-    masonVersion: 'v1',
-    type: 'application',
-    name: 'pebble',
+  .nock('http://localhost/v1/test', api => {
+    api.reqHeaders = {authorization: 'Bearer 123'}
+    return api
+    .post('/applications?environment=development')
+    .reply(200, {
+      masonVersion: 'v1',
+      type: 'application',
+      name: 'pebble',
+    })
   })
-  )
   .stdout()
   .stderr()
   .command(['apps:create', 'pebble'])

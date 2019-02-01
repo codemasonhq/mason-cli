@@ -12,26 +12,29 @@ describe('services:upgrade', () => {
     }
   })
   .stub(helpers, 'createGitRemote', () => {})
-  .nock('http://localhost/v1/test', api => api
-  .get('/services/pebble/web?environment=development&api_token=123')
-  .reply(200, {id: 1, name: 'web'})
-  .put('/services/1?environment=development&api_token=123', {
-    masonVersion: 'v1',
-    type: 'service',
-    name: 'web',
-    image: 'registry.mason.ci/pebble/web',
-    environment: {
-      FOO: 'BAR',
-    },
-    labels: {
-      'io.rancher.container.pull_image': 'always',
-    },
-    ports: ['80'],
-    volumes: [],
-    links: [],
+  .nock('http://localhost/v1/test', api => {
+    api.reqHeaders = {authorization: 'Bearer 123'}
+    return api
+    .get('/services/pebble/web?environment=development')
+    .reply(200, {id: 1, name: 'web'})
+    .put('/services/1?environment=development', {
+      masonVersion: 'v1',
+      type: 'service',
+      name: 'web',
+      image: 'registry.mason.ci/pebble/web',
+      command: '',
+      environment: {
+        FOO: 'BAR',
+      },
+      labels: {
+        'io.rancher.container.pull_image': 'always',
+      },
+      ports: ['80'],
+      volumes: [],
+      links: [],
+    })
+    .reply(200)
   })
-  .reply(200)
-  )
   .stdout()
   .stderr()
   .command(['services:upgrade', 'pebble/web', '-p', '80', '--env', 'FOO=BAR', '--image', 'registry.mason.ci/pebble/web'])
