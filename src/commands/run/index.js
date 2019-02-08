@@ -38,10 +38,9 @@ class RunIndexCommand extends Command {
 
     let sigints = []
 
-    process.stdin.on('keypress', str => {
-      if (str) {
-        socket.send(Buffer.from(str).toString('base64'))
-      }
+    process.stdin.on('keypress', (str, key) => {
+
+      socket.send(Buffer.from(key.sequence).toString('base64'))
 
       // Exit
       if (str === '\u0003') {
@@ -52,9 +51,9 @@ class RunIndexCommand extends Command {
       sigints = sigints.filter(d => d > new Date() - 1000)
 
       // Force disconnect on repeated SIGINTs
-      if (sigints.length >= 3) {
+      if (sigints.length >= 4) {
         this.log('Disconnecting... Goodbye!')
-        this.exit()
+        process.exit()
       }
     })
 
