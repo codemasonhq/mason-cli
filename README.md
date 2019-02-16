@@ -14,7 +14,7 @@ $ npm install -g codemason
 $ mason COMMAND
 running command...
 $ mason (-v|--version|version)
-codemason/1.1.0 darwin-x64 node-v11.0.0
+codemason/1.2.0 darwin-x64 node-v11.0.0
 $ mason --help [COMMAND]
 USAGE
   $ mason COMMAND
@@ -39,6 +39,7 @@ USAGE
 * [`mason craft KIT`](#mason-craft-kit)
 * [`mason git:remote APP`](#mason-gitremote-app)
 * [`mason help [COMMAND]`](#mason-help-command)
+* [`mason logs APP`](#mason-logs-app)
 * [`mason plugins`](#mason-plugins)
 * [`mason plugins:install PLUGIN...`](#mason-pluginsinstall-plugin)
 * [`mason plugins:link PLUGIN`](#mason-pluginslink-plugin)
@@ -49,7 +50,6 @@ USAGE
 * [`mason services:create SERVICE`](#mason-servicescreate-service)
 * [`mason services:destroy SERVICE`](#mason-servicesdestroy-service)
 * [`mason services:upgrade SERVICE`](#mason-servicesupgrade-service)
-* [`mason update [CHANNEL]`](#mason-update-channel)
 
 ## `mason apps`
 
@@ -63,7 +63,7 @@ OPTIONS
   -e, --environment=environment  [default: development] the environment of apps to list
 ```
 
-_See code: [src/commands/apps.js](https://github.com/codemasonhq/mason-cli/blob/v1.1.0/src/commands/apps.js)_
+_See code: [src/commands/apps.js](https://github.com/codemasonhq/mason-cli/blob/v1.2.0/src/commands/apps.js)_
 
 ## `mason apps:create NAME`
 
@@ -82,7 +82,7 @@ ALIASES
   $ mason create
 ```
 
-_See code: [src/commands/apps/create.js](https://github.com/codemasonhq/mason-cli/blob/v1.1.0/src/commands/apps/create.js)_
+_See code: [src/commands/apps/create.js](https://github.com/codemasonhq/mason-cli/blob/v1.2.0/src/commands/apps/create.js)_
 
 ## `mason apps:deploy NAME`
 
@@ -103,7 +103,7 @@ ALIASES
   $ mason deploy
 ```
 
-_See code: [src/commands/apps/deploy.js](https://github.com/codemasonhq/mason-cli/blob/v1.1.0/src/commands/apps/deploy.js)_
+_See code: [src/commands/apps/deploy.js](https://github.com/codemasonhq/mason-cli/blob/v1.2.0/src/commands/apps/deploy.js)_
 
 ## `mason apps:destroy NAME`
 
@@ -117,7 +117,7 @@ OPTIONS
   -e, --environment=environment  [default: development] the environment of the app
 ```
 
-_See code: [src/commands/apps/destroy.js](https://github.com/codemasonhq/mason-cli/blob/v1.1.0/src/commands/apps/destroy.js)_
+_See code: [src/commands/apps/destroy.js](https://github.com/codemasonhq/mason-cli/blob/v1.2.0/src/commands/apps/destroy.js)_
 
 ## `mason auth`
 
@@ -135,7 +135,7 @@ ALIASES
   $ mason login
 ```
 
-_See code: [src/commands/auth.js](https://github.com/codemasonhq/mason-cli/blob/v1.1.0/src/commands/auth.js)_
+_See code: [src/commands/auth.js](https://github.com/codemasonhq/mason-cli/blob/v1.2.0/src/commands/auth.js)_
 
 ## `mason auth:logout`
 
@@ -149,7 +149,7 @@ ALIASES
   $ mason logout
 ```
 
-_See code: [src/commands/auth/logout.js](https://github.com/codemasonhq/mason-cli/blob/v1.1.0/src/commands/auth/logout.js)_
+_See code: [src/commands/auth/logout.js](https://github.com/codemasonhq/mason-cli/blob/v1.2.0/src/commands/auth/logout.js)_
 
 ## `mason auth:token`
 
@@ -163,7 +163,7 @@ ALIASES
   $ mason token
 ```
 
-_See code: [src/commands/auth/token.js](https://github.com/codemasonhq/mason-cli/blob/v1.1.0/src/commands/auth/token.js)_
+_See code: [src/commands/auth/token.js](https://github.com/codemasonhq/mason-cli/blob/v1.2.0/src/commands/auth/token.js)_
 
 ## `mason auth:whoami`
 
@@ -177,7 +177,7 @@ ALIASES
   $ mason whoami
 ```
 
-_See code: [src/commands/auth/whoami.js](https://github.com/codemasonhq/mason-cli/blob/v1.1.0/src/commands/auth/whoami.js)_
+_See code: [src/commands/auth/whoami.js](https://github.com/codemasonhq/mason-cli/blob/v1.2.0/src/commands/auth/whoami.js)_
 
 ## `mason config`
 
@@ -188,7 +188,7 @@ USAGE
   $ mason config
 ```
 
-_See code: [src/commands/config.js](https://github.com/codemasonhq/mason-cli/blob/v1.1.0/src/commands/config.js)_
+_See code: [src/commands/config.js](https://github.com/codemasonhq/mason-cli/blob/v1.2.0/src/commands/config.js)_
 
 ## `mason config:get KEY`
 
@@ -199,7 +199,7 @@ USAGE
   $ mason config:get KEY
 ```
 
-_See code: [src/commands/config/get.js](https://github.com/codemasonhq/mason-cli/blob/v1.1.0/src/commands/config/get.js)_
+_See code: [src/commands/config/get.js](https://github.com/codemasonhq/mason-cli/blob/v1.2.0/src/commands/config/get.js)_
 
 ## `mason config:set KEY VALUE`
 
@@ -210,7 +210,7 @@ USAGE
   $ mason config:set KEY VALUE
 ```
 
-_See code: [src/commands/config/set.js](https://github.com/codemasonhq/mason-cli/blob/v1.1.0/src/commands/config/set.js)_
+_See code: [src/commands/config/set.js](https://github.com/codemasonhq/mason-cli/blob/v1.2.0/src/commands/config/set.js)_
 
 ## `mason config:unset KEY`
 
@@ -221,7 +221,7 @@ USAGE
   $ mason config:unset KEY
 ```
 
-_See code: [src/commands/config/unset.js](https://github.com/codemasonhq/mason-cli/blob/v1.1.0/src/commands/config/unset.js)_
+_See code: [src/commands/config/unset.js](https://github.com/codemasonhq/mason-cli/blob/v1.2.0/src/commands/config/unset.js)_
 
 ## `mason craft KIT`
 
@@ -255,7 +255,7 @@ OPTIONS
   -r, --remote=remote  name to give git remote
 ```
 
-_See code: [src/commands/git/remote.js](https://github.com/codemasonhq/mason-cli/blob/v1.1.0/src/commands/git/remote.js)_
+_See code: [src/commands/git/remote.js](https://github.com/codemasonhq/mason-cli/blob/v1.2.0/src/commands/git/remote.js)_
 
 ## `mason help [COMMAND]`
 
@@ -274,6 +274,25 @@ OPTIONS
 
 _See code: [@oclif/plugin-help](https://github.com/oclif/plugin-help/blob/v1.2.11/src/commands/help.ts)_
 
+## `mason logs APP`
+
+display recent log output
+
+```
+USAGE
+  $ mason logs APP
+
+ARGUMENTS
+  APP  app to run command against
+
+OPTIONS
+  -e, --environment=environment  [default: development] the environment of apps to list
+  -t, --tail                     continually stream logs
+  --service=service              only show output from this service
+```
+
+_See code: [src/commands/logs.js](https://github.com/codemasonhq/mason-cli/blob/v1.2.0/src/commands/logs.js)_
+
 ## `mason plugins`
 
 list installed plugins
@@ -289,7 +308,7 @@ EXAMPLE
   $ mason plugins
 ```
 
-_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v1.5.2/src/commands/plugins.ts)_
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v1.7.7/src/commands/plugins.ts)_
 
 ## `mason plugins:install PLUGIN...`
 
@@ -303,6 +322,7 @@ ARGUMENTS
   PLUGIN  plugin to install
 
 OPTIONS
+  -f, --force    yarn install with force flag
   -h, --help     show CLI help
   -v, --verbose
 
@@ -327,7 +347,7 @@ EXAMPLES
   $ mason plugins:install someuser/someplugin
 ```
 
-_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v1.5.2/src/commands/plugins/install.ts)_
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v1.7.7/src/commands/plugins/install.ts)_
 
 ## `mason plugins:link PLUGIN`
 
@@ -355,7 +375,7 @@ EXAMPLE
   $ mason plugins:link myplugin
 ```
 
-_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v1.5.2/src/commands/plugins/link.ts)_
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v1.7.7/src/commands/plugins/link.ts)_
 
 ## `mason plugins:uninstall PLUGIN...`
 
@@ -377,7 +397,7 @@ ALIASES
   $ mason plugins:remove
 ```
 
-_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v1.5.2/src/commands/plugins/uninstall.ts)_
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v1.7.7/src/commands/plugins/uninstall.ts)_
 
 ## `mason plugins:update`
 
@@ -392,7 +412,7 @@ OPTIONS
   -v, --verbose
 ```
 
-_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v1.5.2/src/commands/plugins/update.ts)_
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v1.7.7/src/commands/plugins/update.ts)_
 
 ## `mason run [COMMAND]`
 
@@ -410,7 +430,7 @@ ALIASES
   $ mason run
 ```
 
-_See code: [src/commands/run.js](https://github.com/codemasonhq/mason-cli/blob/v1.1.0/src/commands/run.js)_
+_See code: [src/commands/run.js](https://github.com/codemasonhq/mason-cli/blob/v1.2.0/src/commands/run.js)_
 
 ## `mason services`
 
@@ -424,7 +444,7 @@ OPTIONS
   -e, --environment=environment  [default: development] the environment of services to list
 ```
 
-_See code: [src/commands/services.js](https://github.com/codemasonhq/mason-cli/blob/v1.1.0/src/commands/services.js)_
+_See code: [src/commands/services.js](https://github.com/codemasonhq/mason-cli/blob/v1.2.0/src/commands/services.js)_
 
 ## `mason services:create SERVICE`
 
@@ -448,7 +468,7 @@ OPTIONS
   --env-file=env-file            path to env file to load
 ```
 
-_See code: [src/commands/services/create.js](https://github.com/codemasonhq/mason-cli/blob/v1.1.0/src/commands/services/create.js)_
+_See code: [src/commands/services/create.js](https://github.com/codemasonhq/mason-cli/blob/v1.2.0/src/commands/services/create.js)_
 
 ## `mason services:destroy SERVICE`
 
@@ -465,7 +485,7 @@ OPTIONS
   -e, --environment=environment  [default: development] the environment the app is located in
 ```
 
-_See code: [src/commands/services/destroy.js](https://github.com/codemasonhq/mason-cli/blob/v1.1.0/src/commands/services/destroy.js)_
+_See code: [src/commands/services/destroy.js](https://github.com/codemasonhq/mason-cli/blob/v1.2.0/src/commands/services/destroy.js)_
 
 ## `mason services:upgrade SERVICE`
 
@@ -493,18 +513,7 @@ OPTIONS
   --rollback                     rollback an upgrade
 ```
 
-_See code: [src/commands/services/upgrade.js](https://github.com/codemasonhq/mason-cli/blob/v1.1.0/src/commands/services/upgrade.js)_
-
-## `mason update [CHANNEL]`
-
-update the mason CLI
-
-```
-USAGE
-  $ mason update [CHANNEL]
-```
-
-_See code: [@oclif/plugin-update](https://github.com/oclif/plugin-update/blob/v1.2.14/src/commands/update.ts)_
+_See code: [src/commands/services/upgrade.js](https://github.com/codemasonhq/mason-cli/blob/v1.2.0/src/commands/services/upgrade.js)_
 <!-- commandsstop -->
 
 ## Additional Documentation 

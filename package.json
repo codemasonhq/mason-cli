@@ -1,7 +1,7 @@
 {
   "name": "codemason",
   "description": "A cloud platform for hosting apps without the hassle.",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "author": "Ben M @benmag",
   "bin": {
     "mason": "./bin/run"
@@ -57,7 +57,7 @@
     "plugins": [
       "@oclif/plugin-help",
       "@oclif/plugin-plugins",
-      "@oclif/plugin-warn-if-update-available", 
+      "@oclif/plugin-warn-if-update-available",
       "@codemason/mason-cli-craft"
     ]
   },
