@@ -39,7 +39,6 @@ class RunIndexCommand extends Command {
     let sigints = []
 
     process.stdin.on('keypress', (str, key) => {
-
       socket.send(Buffer.from(key.sequence).toString('base64'))
 
       // Exit
@@ -52,6 +51,8 @@ class RunIndexCommand extends Command {
 
       // Force disconnect on repeated SIGINTs
       if (sigints.length >= 4) {
+        /* eslint-disable  no-process-exit */
+        /* eslint-disable unicorn/no-process-exit */
         this.log('Disconnecting... Goodbye!')
         process.exit()
       }
