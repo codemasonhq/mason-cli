@@ -14,7 +14,7 @@ $ npm install -g codemason
 $ mason COMMAND
 running command...
 $ mason (-v|--version|version)
-codemason/1.2.0 darwin-x64 node-v11.10.0
+codemason/1.3.0 darwin-x64 node-v11.10.0
 $ mason --help [COMMAND]
 USAGE
   $ mason COMMAND
@@ -46,7 +46,7 @@ USAGE
 * [`mason plugins:uninstall PLUGIN...`](#mason-pluginsuninstall-plugin)
 * [`mason plugins:update`](#mason-pluginsupdate)
 * [`mason run [COMMAND]`](#mason-run-command)
-* [`mason services`](#mason-services)
+* [`mason services APP`](#mason-services-app)
 * [`mason services:create SERVICE`](#mason-servicescreate-service)
 * [`mason services:destroy SERVICE`](#mason-servicesdestroy-service)
 * [`mason services:upgrade SERVICE`](#mason-servicesupgrade-service)
@@ -58,12 +58,9 @@ list your apps
 ```
 USAGE
   $ mason apps
-
-OPTIONS
-  -e, --environment=environment  [default: development] the environment of apps to list
 ```
 
-_See code: [src/commands/apps.js](https://github.com/codemasonhq/mason-cli/blob/v1.2.0/src/commands/apps.js)_
+_See code: [src/commands/apps.js](https://github.com/codemasonhq/mason-cli/blob/v1.3.0/src/commands/apps.js)_
 
 ## `mason apps:create NAME`
 
@@ -74,15 +71,14 @@ USAGE
   $ mason apps:create NAME
 
 OPTIONS
-  -e, --environment=environment  [default: development] the environment to create the app in
-  -n, --no-remote                do not add a git remote
-  -r, --remote=remote            [default: codemason] the git remote to create
+  -n, --no-remote      do not add a git remote
+  -r, --remote=remote  [default: codemason] the git remote to create
 
 ALIASES
   $ mason create
 ```
 
-_See code: [src/commands/apps/create.js](https://github.com/codemasonhq/mason-cli/blob/v1.2.0/src/commands/apps/create.js)_
+_See code: [src/commands/apps/create.js](https://github.com/codemasonhq/mason-cli/blob/v1.3.0/src/commands/apps/create.js)_
 
 ## `mason apps:deploy NAME`
 
@@ -94,7 +90,6 @@ USAGE
 
 OPTIONS
   -c, --compose-file=compose-file  [default: docker-compose.yml] path to a docker compose file
-  -e, --environment=environment    [default: development] the environment to deploy the app to
   -m, --mason-json=mason-json      path to a mason json file
   --env-file=env-file              [default: .env] path to env file to load
   --no-env-file
@@ -103,7 +98,7 @@ ALIASES
   $ mason deploy
 ```
 
-_See code: [src/commands/apps/deploy.js](https://github.com/codemasonhq/mason-cli/blob/v1.2.0/src/commands/apps/deploy.js)_
+_See code: [src/commands/apps/deploy.js](https://github.com/codemasonhq/mason-cli/blob/v1.3.0/src/commands/apps/deploy.js)_
 
 ## `mason apps:destroy NAME`
 
@@ -112,12 +107,9 @@ permanently destroy an app
 ```
 USAGE
   $ mason apps:destroy NAME
-
-OPTIONS
-  -e, --environment=environment  [default: development] the environment of the app
 ```
 
-_See code: [src/commands/apps/destroy.js](https://github.com/codemasonhq/mason-cli/blob/v1.2.0/src/commands/apps/destroy.js)_
+_See code: [src/commands/apps/destroy.js](https://github.com/codemasonhq/mason-cli/blob/v1.3.0/src/commands/apps/destroy.js)_
 
 ## `mason auth`
 
@@ -135,7 +127,7 @@ ALIASES
   $ mason login
 ```
 
-_See code: [src/commands/auth.js](https://github.com/codemasonhq/mason-cli/blob/v1.2.0/src/commands/auth.js)_
+_See code: [src/commands/auth.js](https://github.com/codemasonhq/mason-cli/blob/v1.3.0/src/commands/auth.js)_
 
 ## `mason auth:logout`
 
@@ -149,7 +141,7 @@ ALIASES
   $ mason logout
 ```
 
-_See code: [src/commands/auth/logout.js](https://github.com/codemasonhq/mason-cli/blob/v1.2.0/src/commands/auth/logout.js)_
+_See code: [src/commands/auth/logout.js](https://github.com/codemasonhq/mason-cli/blob/v1.3.0/src/commands/auth/logout.js)_
 
 ## `mason auth:token`
 
@@ -163,7 +155,7 @@ ALIASES
   $ mason token
 ```
 
-_See code: [src/commands/auth/token.js](https://github.com/codemasonhq/mason-cli/blob/v1.2.0/src/commands/auth/token.js)_
+_See code: [src/commands/auth/token.js](https://github.com/codemasonhq/mason-cli/blob/v1.3.0/src/commands/auth/token.js)_
 
 ## `mason auth:whoami`
 
@@ -177,7 +169,7 @@ ALIASES
   $ mason whoami
 ```
 
-_See code: [src/commands/auth/whoami.js](https://github.com/codemasonhq/mason-cli/blob/v1.2.0/src/commands/auth/whoami.js)_
+_See code: [src/commands/auth/whoami.js](https://github.com/codemasonhq/mason-cli/blob/v1.3.0/src/commands/auth/whoami.js)_
 
 ## `mason config`
 
@@ -188,7 +180,7 @@ USAGE
   $ mason config
 ```
 
-_See code: [src/commands/config.js](https://github.com/codemasonhq/mason-cli/blob/v1.2.0/src/commands/config.js)_
+_See code: [src/commands/config.js](https://github.com/codemasonhq/mason-cli/blob/v1.3.0/src/commands/config.js)_
 
 ## `mason config:get KEY`
 
@@ -199,7 +191,7 @@ USAGE
   $ mason config:get KEY
 ```
 
-_See code: [src/commands/config/get.js](https://github.com/codemasonhq/mason-cli/blob/v1.2.0/src/commands/config/get.js)_
+_See code: [src/commands/config/get.js](https://github.com/codemasonhq/mason-cli/blob/v1.3.0/src/commands/config/get.js)_
 
 ## `mason config:set KEY VALUE`
 
@@ -210,7 +202,7 @@ USAGE
   $ mason config:set KEY VALUE
 ```
 
-_See code: [src/commands/config/set.js](https://github.com/codemasonhq/mason-cli/blob/v1.2.0/src/commands/config/set.js)_
+_See code: [src/commands/config/set.js](https://github.com/codemasonhq/mason-cli/blob/v1.3.0/src/commands/config/set.js)_
 
 ## `mason config:unset KEY`
 
@@ -221,7 +213,7 @@ USAGE
   $ mason config:unset KEY
 ```
 
-_See code: [src/commands/config/unset.js](https://github.com/codemasonhq/mason-cli/blob/v1.2.0/src/commands/config/unset.js)_
+_See code: [src/commands/config/unset.js](https://github.com/codemasonhq/mason-cli/blob/v1.3.0/src/commands/config/unset.js)_
 
 ## `mason craft KIT`
 
@@ -255,7 +247,7 @@ OPTIONS
   -r, --remote=remote  name to give git remote
 ```
 
-_See code: [src/commands/git/remote.js](https://github.com/codemasonhq/mason-cli/blob/v1.2.0/src/commands/git/remote.js)_
+_See code: [src/commands/git/remote.js](https://github.com/codemasonhq/mason-cli/blob/v1.3.0/src/commands/git/remote.js)_
 
 ## `mason help [COMMAND]`
 
@@ -286,12 +278,11 @@ ARGUMENTS
   APP  app to run command against
 
 OPTIONS
-  -e, --environment=environment  [default: development] the environment of apps to list
-  -t, --tail                     continually stream logs
-  --service=service              only show output from this service
+  -t, --tail         continually stream logs
+  --service=service  only show output from this service
 ```
 
-_See code: [src/commands/logs.js](https://github.com/codemasonhq/mason-cli/blob/v1.2.0/src/commands/logs.js)_
+_See code: [src/commands/logs.js](https://github.com/codemasonhq/mason-cli/blob/v1.3.0/src/commands/logs.js)_
 
 ## `mason plugins`
 
@@ -308,7 +299,7 @@ EXAMPLE
   $ mason plugins
 ```
 
-_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v1.7.7/src/commands/plugins.ts)_
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v1.5.2/src/commands/plugins.ts)_
 
 ## `mason plugins:install PLUGIN...`
 
@@ -322,7 +313,6 @@ ARGUMENTS
   PLUGIN  plugin to install
 
 OPTIONS
-  -f, --force    yarn install with force flag
   -h, --help     show CLI help
   -v, --verbose
 
@@ -347,7 +337,7 @@ EXAMPLES
   $ mason plugins:install someuser/someplugin
 ```
 
-_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v1.7.7/src/commands/plugins/install.ts)_
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v1.5.2/src/commands/plugins/install.ts)_
 
 ## `mason plugins:link PLUGIN`
 
@@ -375,7 +365,7 @@ EXAMPLE
   $ mason plugins:link myplugin
 ```
 
-_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v1.7.7/src/commands/plugins/link.ts)_
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v1.5.2/src/commands/plugins/link.ts)_
 
 ## `mason plugins:uninstall PLUGIN...`
 
@@ -397,7 +387,7 @@ ALIASES
   $ mason plugins:remove
 ```
 
-_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v1.7.7/src/commands/plugins/uninstall.ts)_
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v1.5.2/src/commands/plugins/uninstall.ts)_
 
 ## `mason plugins:update`
 
@@ -412,7 +402,7 @@ OPTIONS
   -v, --verbose
 ```
 
-_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v1.7.7/src/commands/plugins/update.ts)_
+_See code: [@oclif/plugin-plugins](https://github.com/oclif/plugin-plugins/blob/v1.5.2/src/commands/plugins/update.ts)_
 
 ## `mason run [COMMAND]`
 
@@ -423,28 +413,24 @@ USAGE
   $ mason run [COMMAND]
 
 OPTIONS
-  -e, --environment=environment  [default: development] the environment of apps to list
-  --service=service              (required) service to run one-off command, formatted as `<app>/<service>`
+  --service=service  (required) service to run one-off command, formatted as `<app>/<service>`
 
 ALIASES
   $ mason run
 ```
 
-_See code: [src/commands/run.js](https://github.com/codemasonhq/mason-cli/blob/v1.2.0/src/commands/run.js)_
+_See code: [src/commands/run.js](https://github.com/codemasonhq/mason-cli/blob/v1.3.0/src/commands/run.js)_
 
-## `mason services`
+## `mason services APP`
 
 list your services
 
 ```
 USAGE
-  $ mason services
-
-OPTIONS
-  -e, --environment=environment  [default: development] the environment of services to list
+  $ mason services APP
 ```
 
-_See code: [src/commands/services.js](https://github.com/codemasonhq/mason-cli/blob/v1.2.0/src/commands/services.js)_
+_See code: [src/commands/services.js](https://github.com/codemasonhq/mason-cli/blob/v1.3.0/src/commands/services.js)_
 
 ## `mason services:create SERVICE`
 
@@ -458,17 +444,16 @@ ARGUMENTS
   SERVICE  service to create formatted as `<app>/<service>`
 
 OPTIONS
-  -c, --command=command          command for service to run
-  -e, --environment=environment  [default: development] the environment to access
-  -i, --image=image              image for service to run
-  -l, --link=link                link to another service
-  -p, --port=port                ports to define on service
-  -v, --volume=volume            volume to mount on service
-  --env=env                      env variable available to the service
-  --env-file=env-file            path to env file to load
+  -c, --command=command  command for service to run
+  -i, --image=image      image for service to run
+  -l, --link=link        link to another service
+  -p, --port=port        ports to define on service
+  -v, --volume=volume    volume to mount on service
+  --env=env              env variable available to the service
+  --env-file=env-file    path to env file to load
 ```
 
-_See code: [src/commands/services/create.js](https://github.com/codemasonhq/mason-cli/blob/v1.2.0/src/commands/services/create.js)_
+_See code: [src/commands/services/create.js](https://github.com/codemasonhq/mason-cli/blob/v1.3.0/src/commands/services/create.js)_
 
 ## `mason services:destroy SERVICE`
 
@@ -480,12 +465,9 @@ USAGE
 
 ARGUMENTS
   SERVICE  service to destroy formatted as `<app>/<service>`
-
-OPTIONS
-  -e, --environment=environment  [default: development] the environment the app is located in
 ```
 
-_See code: [src/commands/services/destroy.js](https://github.com/codemasonhq/mason-cli/blob/v1.2.0/src/commands/services/destroy.js)_
+_See code: [src/commands/services/destroy.js](https://github.com/codemasonhq/mason-cli/blob/v1.3.0/src/commands/services/destroy.js)_
 
 ## `mason services:upgrade SERVICE`
 
@@ -499,21 +481,20 @@ ARGUMENTS
   SERVICE  service to create formatted as `<app>/<service>`
 
 OPTIONS
-  -c, --command=command          command for service to run
-  -e, --environment=environment  [default: development] the environment the service is located in
-  -i, --image=image              image for service to run
-  -l, --link=link                link to another service
-  -p, --port=port                ports to define on service
-  -v, --volume=volume            volume to mount on service
-  --cancel                       cancel an upgrade
-  --cancel-rollback              cancel a rollback
-  --env=env                      env variable available to the service
-  --env-file=env-file            path to env file to load
-  --finish                       finish an upgrade
-  --rollback                     rollback an upgrade
+  -c, --command=command  command for service to run
+  -i, --image=image      image for service to run
+  -l, --link=link        link to another service
+  -p, --port=port        ports to define on service
+  -v, --volume=volume    volume to mount on service
+  --cancel               cancel an upgrade
+  --cancel-rollback      cancel a rollback
+  --env=env              env variable available to the service
+  --env-file=env-file    path to env file to load
+  --finish               finish an upgrade
+  --rollback             rollback an upgrade
 ```
 
-_See code: [src/commands/services/upgrade.js](https://github.com/codemasonhq/mason-cli/blob/v1.2.0/src/commands/services/upgrade.js)_
+_See code: [src/commands/services/upgrade.js](https://github.com/codemasonhq/mason-cli/blob/v1.3.0/src/commands/services/upgrade.js)_
 <!-- commandsstop -->
 
 ## Additional Documentation 
