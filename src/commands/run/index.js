@@ -14,7 +14,6 @@ class RunIndexCommand extends Command {
     const {flags} = this.parse(RunIndexCommand)
 
     this.team = _.get(this.config, 'userConfig.team.slug')
-    this.environment = flags.environment
 
     cli.action.start(`Running ${chalk.yellow(args.command)} on ${chalk.cyan('⬢ ' + flags.service.join('/'))}`)
 
@@ -64,7 +63,7 @@ class RunIndexCommand extends Command {
   }
 
   async getService(app, name) {
-    return this.codemason.get(`/${this.team}/services/${app}/${name}?environment=${this.environment}`)
+    return this.codemason.get(`/${this.team}/apps/${app}/services/${name}`)
     .then(response => {
       return response.data
     })
@@ -122,11 +121,6 @@ RunIndexCommand.flags = {
       }
       return parts
     }),
-  }),
-  environment: flags.string({
-    char: 'e',
-    description: 'the environment of apps to list',
-    default: 'development',
   }),
 }
 

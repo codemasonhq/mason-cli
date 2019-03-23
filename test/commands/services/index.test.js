@@ -13,14 +13,14 @@ describe('services', () => {
   .nock('http://localhost/v1/test', api => {
     api.reqHeaders = {authorization: 'Bearer 123'}
     return api
-    .get('/services?environment=development')
+    .get('/apps/pebble/services')
     .reply(200, [{name: 'hello-world'}])
   })
   .stdout()
   .stderr()
-  .command(['services'])
+  .command(['services', 'pebble'])
   .it('return services', ctx => {
-    expect(ctx.stdout).to.contains('Your services (test)')
+    expect(ctx.stdout).to.contains('Services for pebble')
     expect(ctx.stdout).to.contains('hello-world')
   })
 })

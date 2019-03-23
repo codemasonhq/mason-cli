@@ -16,7 +16,6 @@ class ServicesUpgradeCommand extends Command {
     var name = _.last(args.service)
 
     this.team = _.get(this.config, 'userConfig.team.slug')
-    this.environment = flags.environment
 
     if (flags.finish) {
       cli.action.start('Finishing upgrade of service on Codemason...')
@@ -108,7 +107,7 @@ class ServicesUpgradeCommand extends Command {
     }
 
     // Upgrade the service
-    return this.codemason.put(`/${this.team}/services/${service.id}?environment=${this.environment}`, masonJson)
+    return this.codemason.put(`/${this.team}/apps/${app}/services/${service.id}`, masonJson)
     .then(response => {
       return response.data
     })
@@ -139,7 +138,7 @@ class ServicesUpgradeCommand extends Command {
 
   async getService(app, name) {
     var team = _.get(this.config, 'userConfig.team.slug')
-    return this.codemason.get(`/${team}/services/${app}/${name}?environment=${this.environment}`)
+    return this.codemason.get(`/${team}/apps/${app}/services/${name}`)
     .then(response => {
       return response.data
     })
@@ -157,7 +156,7 @@ class ServicesUpgradeCommand extends Command {
       this.error(e)
     })
 
-    return this.codemason.post(`/${this.team}/services/${service.id}/${route}?environment=${this.environment}`)
+    return this.codemason.post(`/${this.team}/apps/${app}/services/${service.id}/${route}`)
     .then(response => {
       return response.data
     })
@@ -232,11 +231,6 @@ ServicesUpgradeCommand.flags = {
   }),
   'env-file': flags.string({
     description: 'path to env file to load',
-  }),
-  environment: flags.string({
-    char: 'e',
-    description: 'the environment the service is located in',
-    default: 'development',
   }),
 }
 

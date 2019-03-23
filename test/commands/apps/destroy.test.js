@@ -13,7 +13,7 @@ describe('apps:destroy', () => {
   .nock('http://localhost/v1/test', api => {
     api.reqHeaders = {authorization: 'Bearer 123'}
     return api
-    .delete('/applications/pebble?environment=development')
+    .delete('/apps/pebble')
     .reply(200)
   })
   .stdout()

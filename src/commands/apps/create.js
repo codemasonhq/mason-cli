@@ -10,7 +10,7 @@ class AppsCreateCommand extends Command {
 
     this.log('Creating app on Codemason...')
 
-    await this.createApp(args.name, flags.environment).catch(e => {
+    await this.createApp(args.name).catch(e => {
       this.error(e)
     })
 
@@ -21,9 +21,9 @@ class AppsCreateCommand extends Command {
     }
   }
 
-  async createApp(name, environment) {
+  async createApp(name) {
     var team = _.get(this.config, 'userConfig.team.slug')
-    return this.codemason.post(`/${team}/applications?environment=${environment}`, {
+    return this.codemason.post(`/${team}/apps`, {
       masonVersion: 'v1',
       type: 'application',
       name: name,
@@ -68,11 +68,6 @@ AppsCreateCommand.args = [
 ]
 
 AppsCreateCommand.flags = {
-  environment: flags.string({
-    char: 'e',
-    description: 'the environment to create the app in',
-    default: 'development',
-  }),
   remote: flags.string({
     char: 'r',
     description: 'the git remote to create',

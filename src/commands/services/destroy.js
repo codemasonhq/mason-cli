@@ -1,4 +1,4 @@
-const {Command, flags} = require('../../base')
+const {Command} = require('../../base')
 const {CLIError} = require('@oclif/errors')
 const {cli} = require('cli-ux')
 
@@ -9,13 +9,11 @@ const _ = require('lodash')
 class ServiceDestroyCommand extends Command {
   async run() {
     const {args} = this.parse(ServiceDestroyCommand)
-    const {flags} = this.parse(ServiceDestroyCommand)
 
     var app = _.first(args.service)
     var name = _.last(args.service)
 
     this.team = _.get(this.config, 'userConfig.team.slug')
-    this.environment = flags.environment
 
     cli.action.start(`Destroying ${chalk.red(name)} service in ${chalk.cyan(app)}`)
     await this.destroyService(app, name).catch(e => this.error(e))
@@ -27,7 +25,7 @@ class ServiceDestroyCommand extends Command {
       this.error(e)
     })
 
-    return this.codemason.delete(`/${this.team}/services/${service.id}?environment=${this.environment}`)
+    return this.codemason.delete(`/${this.team}/apps/${app}/services/${service.id}`)
     .then(response => {
       return _.get(response, 'data')
     })
@@ -41,7 +39,7 @@ class ServiceDestroyCommand extends Command {
   }
 
   async getService(app, name) {
-    return this.codemason.get(`/${this.team}/services/${app}/${name}?environment=${this.environment}`)
+    return this.codemason.get(`/${this.team}/apps/${app}/services/${name}`)
     .then(response => {
       return response.data
     })
@@ -69,14 +67,6 @@ ServiceDestroyCommand.args = [
     }),
   },
 ]
-
-ServiceDestroyCommand.flags = {
-  environment: flags.string({
-    char: 'e',
-    description: 'the environment the app is located in',
-    default: 'development',
-  }),
-}
 
 ServiceDestroyCommand.description = 'permanently destroy an app'
 

@@ -31,7 +31,7 @@ describe('apps:deploy', () => {
   .nock('http://localhost/v1/test', api => {
     api.reqHeaders = {authorization: 'Bearer 123'}
     return api
-    .post('/services?application=pebble&environment=development', {
+    .post('/apps/pebble/services', {
       masonVersion: 'v1',
       type: 'service',
       name: 0,

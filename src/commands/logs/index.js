@@ -11,7 +11,6 @@ const _ = require('lodash')
 class LogsIndexCommand extends Command {
   async run() {
     const {args} = this.parse(LogsIndexCommand)
-    const {flags} = this.parse(LogsIndexCommand)
 
     cli.action.start('Connecting to log stream')
 
@@ -20,7 +19,7 @@ class LogsIndexCommand extends Command {
     this.logServiceColors = {}
     this.loggingToConsole = false
 
-    this.application = await this.getApp(args.app, flags.environment).catch(e => {
+    this.application = await this.getApp(args.app).catch(e => {
       this.error(e)
     })
 
@@ -42,9 +41,9 @@ class LogsIndexCommand extends Command {
   /**
    * Fetch Codemason app
    */
-  async getApp(application, environment) {
+  async getApp(application) {
     var team = _.get(this.config, 'userConfig.team.slug')
-    return this.codemason.get(`/${team}/applications/${application}?environment=${environment}`)
+    return this.codemason.get(`/${team}/apps/${application}`)
     .then(response => {
       return _.get(response, 'data')
     })
@@ -179,11 +178,6 @@ LogsIndexCommand.flags = {
     char: 't',
     required: false,
     description: 'continually stream logs',
-  }),
-  environment: flags.string({
-    char: 'e',
-    description: 'the environment of apps to list',
-    default: 'development',
   }),
 }
 

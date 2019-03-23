@@ -13,7 +13,7 @@ describe('logs', () => {
   .nock('http://localhost/v1/test', api => {
     api.reqHeaders = {authorization: 'Bearer 123'}
     return api
-    .get('/applications/pebble?environment=development')
+    .get('/apps/pebble')
     .reply(200, {
       name: 'pebble',
       services: [

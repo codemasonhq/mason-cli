@@ -24,7 +24,7 @@ class AppsDeployCommand extends Command {
     }
 
     // Deploy
-    const services = await this.deploy(args.name, flags.environment, masonJson).catch(e => {
+    const services = await this.deploy(args.name, masonJson).catch(e => {
       this.error(e)
     })
 
@@ -120,10 +120,10 @@ class AppsDeployCommand extends Command {
     })
   }
 
-  async deploy(name, environment, masonJson) {
+  async deploy(name, masonJson) {
     var team = _.get(this.config, 'userConfig.team.slug')
     const requests = _.map(masonJson, service => {
-      return this.codemason.post(`/${team}/services?application=${name}&environment=${environment}`, _.merge({
+      return this.codemason.post(`/${team}/apps/${name}/services`, _.merge({
         masonVersion: 'v1',
         type: 'service',
       }, service))
@@ -172,11 +172,6 @@ AppsDeployCommand.flags = {
   }),
   'no-env-file': flags.boolean({
     exclusive: ['mason-json'],
-  }),
-  environment: flags.string({
-    char: 'e',
-    description: 'the environment to deploy the app to',
-    default: 'development',
   }),
 }
 

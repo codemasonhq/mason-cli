@@ -1,16 +1,16 @@
-const {Command, flags} = require('../../base')
+const {Command} = require('../../base')
 const helpers = require('../../util/helpers')
 const chalk = require('chalk')
 const _ = require('lodash')
 
 class ServicesIndexCommand extends Command {
   async run() {
-    const {flags} = this.parse(ServicesIndexCommand)
+    const {args} = this.parse(ServicesIndexCommand)
 
-    this.log('Your services (' + chalk.green(_.get(this.config, 'userConfig.team.slug')) + ')')
+    this.log('Services for ' + chalk.cyan(args.app))
     this.log()
 
-    const services = await this.getServices(flags.environment).catch(e => {
+    const services = await this.getServices(args.app).catch(e => {
       this.error(e)
     })
 
@@ -39,9 +39,9 @@ class ServicesIndexCommand extends Command {
     this.log(table.toString())
   }
 
-  async getServices(environment) {
+  async getServices(app) {
     var team = _.get(this.config, 'userConfig.team.slug')
-    return this.codemason.get(`/${team}/services?environment=${environment}`)
+    return this.codemason.get(`/${team}/apps/${app}/services`)
     .then(response => {
       return _.get(response, 'data')
     })
@@ -55,13 +55,12 @@ class ServicesIndexCommand extends Command {
   }
 }
 
-ServicesIndexCommand.flags = {
-  environment: flags.string({
-    char: 'e',
-    description: 'the environment of services to list',
-    default: 'development',
-  }),
-}
+ServicesIndexCommand.args = [
+  {
+    name: 'app',
+    required: true,
+  },
+]
 
 ServicesIndexCommand.description = 'list your services'
 

@@ -15,7 +15,7 @@ describe('services:create', () => {
   .nock('http://localhost/v1/test', api => {
     api.reqHeaders = {authorization: 'Bearer 123'}
     return api
-    .post('/services?application=pebble&environment=development')
+    .post('/apps/pebble/services')
     .reply(200, {
       masonVersion: 'v1',
       type: 'application',

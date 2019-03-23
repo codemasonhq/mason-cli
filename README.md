@@ -14,7 +14,7 @@ $ npm install -g codemason
 $ mason COMMAND
 running command...
 $ mason (-v|--version|version)
-codemason/1.2.0 darwin-x64 node-v11.0.0
+codemason/1.2.0 darwin-x64 node-v11.10.0
 $ mason --help [COMMAND]
 USAGE
   $ mason COMMAND

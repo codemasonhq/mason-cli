@@ -15,9 +15,9 @@ describe('services:upgrade', () => {
   .nock('http://localhost/v1/test', api => {
     api.reqHeaders = {authorization: 'Bearer 123'}
     return api
-    .get('/services/pebble/web?environment=development')
+    .get('/apps/pebble/services/web')
     .reply(200, {id: 1, name: 'web'})
-    .put('/services/1?environment=development', {
+    .put('/apps/pebble/services/1', {
       masonVersion: 'v1',
       type: 'service',
       name: 'web',

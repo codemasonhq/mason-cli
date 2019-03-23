@@ -15,7 +15,7 @@ describe('apps:create', () => {
   .nock('http://localhost/v1/test', api => {
     api.reqHeaders = {authorization: 'Bearer 123'}
     return api
-    .post('/applications?environment=development')
+    .post('/apps')
     .reply(200, {
       masonVersion: 'v1',
       type: 'application',

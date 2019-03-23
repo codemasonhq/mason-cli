@@ -13,7 +13,7 @@ describe('run', () => {
   .nock('http://localhost/v1/test', api => {
     api.reqHeaders = {authorization: 'Bearer 123'}
     return api
-    .get('/services/pebble/web?environment=development')
+    .get('/apps/pebble/services/web')
     .reply(200, {
       id: '1',
       name: 'web',

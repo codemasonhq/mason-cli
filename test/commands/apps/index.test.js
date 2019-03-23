@@ -13,7 +13,7 @@ describe('apps', () => {
   .nock('http://localhost/v1/test', api => {
     api.reqHeaders = {authorization: 'Bearer 123'}
     return api
-    .get('/applications?environment=development')
+    .get('/apps')
     .reply(200, [{name: 'hello-world'}])
   })
   .stdout()
