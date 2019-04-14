@@ -31,7 +31,7 @@ class AppsDeployCommand extends Command {
     cli.action.stop()
 
     this.log()
-    this.log(chalk.cyan(` ⬢ ${args.name}`) + chalk.grey(` | ${_.get(this.config, 'userConfig.endpoint')}/applications/${args.name}`))
+    this.log(chalk.cyan(` ⬢ ${args.name}`) + chalk.grey(` | ${_.get(this.config, 'userConfig.endpoint')}/apps/${args.name}`))
     this.log()
 
     const table = helpers.borderlessTable(4)
