@@ -51,7 +51,7 @@ describe('apps:deploy', () => {
   .stderr()
   .command(['apps:deploy', 'pebble'])
   .it('deploy an app', ctx => {
-    expect(ctx.stdout).to.contain('http://localhost/applications/pebble')
+    expect(ctx.stdout).to.contain('http://localhost/apps/pebble')
     expect(ctx.stdout).to.contain('registry.mason.ci/pebble/web')
   })
 })
