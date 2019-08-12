@@ -50,6 +50,8 @@ USAGE
 * [`mason services:create SERVICE`](#mason-servicescreate-service)
 * [`mason services:destroy SERVICE`](#mason-servicesdestroy-service)
 * [`mason services:upgrade SERVICE`](#mason-servicesupgrade-service)
+* [`mason teams`](#mason-teams)
+* [`mason teams:switch`](#mason-teamsswitch)
 
 ## `mason apps`
 
@@ -495,6 +497,31 @@ OPTIONS
 ```
 
 _See code: [src/commands/services/upgrade.js](https://github.com/codemasonhq/mason-cli/blob/v1.3.0/src/commands/services/upgrade.js)_
+
+## `mason teams`
+
+lists the teams you are a member of
+
+```
+USAGE
+  $ mason teams
+```
+
+_See code: [src/commands/teams.js](https://github.com/codemasonhq/mason-cli/blob/v1.3.0/src/commands/teams.js)_
+
+## `mason teams:switch`
+
+set your default team
+
+```
+USAGE
+  $ mason teams:switch
+
+OPTIONS
+  --team=team
+```
+
+_See code: [src/commands/teams/switch.js](https://github.com/codemasonhq/mason-cli/blob/v1.3.0/src/commands/teams/switch.js)_
 <!-- commandsstop -->
 
 ## Additional Documentation 
