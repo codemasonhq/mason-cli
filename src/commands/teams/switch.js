@@ -1,6 +1,6 @@
 const {Command, flags} = require('../../base')
-const inquirer = require('inquirer') // eslint-disable-line node/no-extraneous-require
 const helpers = require('../../util/helpers')
+const inquirer = require('inquirer') // eslint-disable-line node/no-extraneous-require
 const chalk = require('chalk')
 const fs = require('fs-extra')
 const path = require('path')
