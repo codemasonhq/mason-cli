@@ -4,6 +4,7 @@ const {cli} = require('cli-ux')
 
 const helpers = require('../../util/helpers')
 const env = require('node-env-file')
+const chalk = require('chalk')
 const fs = require('fs-extra')
 const _ = require('lodash')
 
@@ -14,13 +15,17 @@ class ServicesCreateCommand extends Command {
     var app = _.first(args.service)
     var name = _.last(args.service)
 
-    cli.action.start('Creating service on Codemason...')
+    cli.action.start('Creating service on Codemason')
 
     const service = await this.createService(app, name).catch(e => {
       this.error(e)
     })
 
     cli.action.stop()
+
+    this.log()
+    this.log(chalk.cyan(` ⬢ ${app}`) + ' › ' + chalk.red(`${name}`))
+    this.log(` http://${service.defaultDomain} | ${_.get(this.config, 'userConfig.endpoint')}/apps/${app}/services/${name}`)
 
     const table = helpers.borderlessTable(4)
     table.push(['NAME', 'IMAGE',  'COMMAND', 'PORTS'])
