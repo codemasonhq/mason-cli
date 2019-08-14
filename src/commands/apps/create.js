@@ -19,6 +19,9 @@ class AppsCreateCommand extends Command {
         this.error(e)
       })
     }
+
+    this.log()
+    this.log(chalk.cyan(` ⬢ ${args.name}`) + ` | ${_.get(this.config, 'userConfig.endpoint')}/apps/${args.name}`)
   }
 
   async createApp(name) {

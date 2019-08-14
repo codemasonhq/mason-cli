@@ -30,7 +30,8 @@ describe('apps:create', () => {
       'Creating app on Codemason...\n' +
       ' ... Created application\n' +
       ' ... Created remote repository\n' +
-      ' ... Added git remote codemason\n'
+      ' ... Added git remote codemason\n\n' +
+      ' ⬢ pebble | http://localhost/apps/pebble\n'
     )
   })
 })
