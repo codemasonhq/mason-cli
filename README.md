@@ -49,6 +49,7 @@ USAGE
 * [`mason services APP`](#mason-services-app)
 * [`mason services:create SERVICE`](#mason-servicescreate-service)
 * [`mason services:destroy SERVICE`](#mason-servicesdestroy-service)
+* [`mason services:open`](#mason-servicesopen)
 * [`mason services:upgrade SERVICE`](#mason-servicesupgrade-service)
 * [`mason teams`](#mason-teams)
 * [`mason teams:switch`](#mason-teamsswitch)
@@ -470,6 +471,24 @@ ARGUMENTS
 ```
 
 _See code: [src/commands/services/destroy.js](https://github.com/codemasonhq/mason-cli/blob/v1.3.0/src/commands/services/destroy.js)_
+
+## `mason services:open`
+
+Describe the command here
+
+```
+USAGE
+  $ mason services:open
+
+OPTIONS
+  -n, --name=name  name to print
+
+DESCRIPTION
+  ...
+  Extra documentation goes here
+```
+
+_See code: [src/commands/services/open.js](https://github.com/codemasonhq/mason-cli/blob/v1.3.0/src/commands/services/open.js)_
 
 ## `mason services:upgrade SERVICE`
 

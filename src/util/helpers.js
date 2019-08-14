@@ -1,4 +1,5 @@
 var _ = require('lodash')
+var open = require('open')
 var fs = require('fs-extra')
 var Table = require('cli-table')
 var child = require('child_process')
@@ -80,4 +81,11 @@ exports.borderlessTable = function (paddingLeft, paddingRight) {
       right: '', 'right-mid': '', middle: ' '},
     style: {'padding-left': paddingLeft ? paddingLeft : 0, 'padding-right': paddingRight ? paddingRight : 0},
   })
+}
+
+/**
+ * Open a url in browser
+ */
+exports.openUrl = function (url) {
+  return open(url)
 }
