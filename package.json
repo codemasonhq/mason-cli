@@ -15,7 +15,7 @@
     "@oclif/plugin-help": "^1",
     "@oclif/plugin-plugins": "^1.5.2",
     "@oclif/plugin-warn-if-update-available": "^1.5.4",
-    "axios": "^0.18.1",
+    "axios": "^0.21.1",
     "chalk": "^2.4.1",
     "cli-table": "^0.3.1",
     "cli-ux": "^4.7.3",
